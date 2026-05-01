@@ -306,7 +306,7 @@ export default function App() {
             <div>
               <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 16 }}>HQ — ETOBICOKE</div>
               <p className="va-body" style={{ fontSize: 14, lineHeight: 1.6, color: 'rgba(240,238,233,0.7)', margin: 0 }}>
-                284 Kipling Ave, Etobicoke, ON M9C 4Z3<br />
+                200 Rexdale Blvd, Etobicoke, ON M9W 1R2<br />
                 Mon–Sat 6:00–18:00 · Sun by appointment
               </p>
             </div>
