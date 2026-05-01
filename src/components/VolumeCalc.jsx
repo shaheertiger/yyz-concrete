@@ -95,7 +95,7 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
       {/* fields */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: shape === 'column' ? '1fr 1fr' : (mobile ? '1fr' : '1fr 1fr 1fr'), 
+        gridTemplateColumns: mobile ? '1fr' : (shape === 'column' ? '1fr 1fr' : '1fr 1fr 1fr'), 
         gap: 14, 
         marginBottom: 24 
       }}>
