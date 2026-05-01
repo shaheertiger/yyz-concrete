@@ -1,0 +1,217 @@
+import { useState } from 'react';
+
+const ACCENT = '#FF6A00';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/info@yyzconcrete.com';
+
+export default function QuoteForm({ accent = ACCENT, dark = false }) {
+  const [step, setStep] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const [data, setData] = useState({
+    project: 'driveway', psi: '32', volume: '15', date: '', addr: '', name: '', phone: '', notes: '',
+  });
+  const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
+
+  const submit = async () => {
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`,
+          'Project type':   data.project,
+          'Mix strength':   `${data.psi} MPa`,
+          'Volume':         `${data.volume} m³`,
+          'Pour date':      data.date || 'TBD',
+          'Site address':   data.addr || '—',
+          'Name / company': data.name,
+          'Phone':          data.phone,
+          'Notes':          data.notes || '—',
+        }),
+      });
+      const json = await res.json();
+      if (json.success === 'true' || json.success === true) {
+        setStep(4);
+      } else {
+        setError('Submission failed — please call dispatch directly.');
+      }
+    } catch {
+      setError('Network error — please call dispatch directly.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const fg = dark ? '#f0eee9' : '#1a1a1a';
+  const muted = dark ? 'rgba(240,238,233,0.55)' : 'rgba(26,26,26,0.55)';
+  const border = dark ? 'rgba(240,238,233,0.15)' : 'rgba(26,26,26,0.12)';
+
+  const steps = ['Project', 'Mix & volume', 'Site & schedule', 'Contact'];
+
+  if (step === 4) {
+    return (
+      <div style={{ padding: '40px 32px', background: accent, color: '#0a0a0a', textAlign: 'center' }}>
+        <div style={{ fontSize: 11, fontWeight: 800, letterSpacing: '0.15em' }}>
+          QUOTE #YYZ-{String(Date.now()).slice(-6)}
+        </div>
+        <div style={{ fontSize: 32, fontWeight: 800, letterSpacing: '-0.02em', margin: '12px 0', lineHeight: 1.1 }}>
+          Quote sent. We'll call within 2 hours.
+        </div>
+        <div style={{ fontSize: 14 }}>Office hours 6am–6pm Mon–Sat. After hours: dispatch line.</div>
+        <button
+          onClick={() => setStep(0)}
+          style={{
+            marginTop: 24, padding: '12px 22px', background: '#0a0a0a', color: accent,
+            border: 'none', fontFamily: 'inherit', fontWeight: 700, letterSpacing: '0.1em',
+            textTransform: 'uppercase', fontSize: 12, cursor: 'pointer',
+          }}>
+          Start another
+        </button>
+      </div>
+    );
+  }
+
+  function Lbl({ children }) {
+    return (
+      <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted, marginBottom: 8 }}>
+        {children}
+      </div>
+    );
+  }
+
+  function Input({ value, onChange, placeholder, type = 'text' }) {
+    return (
+      <input
+        type={type} value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        style={{
+          width: '100%', padding: '14px 16px', border: `1px solid ${border}`,
+          background: 'transparent', color: fg, fontFamily: 'inherit', fontSize: 16,
+          fontWeight: 500, outline: 'none', boxSizing: 'border-box',
+        }}
+      />
+    );
+  }
+
+  function Choice({ value, current, onChange, label }) {
+    const active = current === value;
+    return (
+      <button
+        onClick={() => onChange(value)}
+        style={{
+          padding: '14px 16px',
+          border: `1px solid ${active ? accent : border}`,
+          background: active ? accent : 'transparent',
+          color: active ? '#0a0a0a' : fg,
+          fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left',
+        }}>
+        {label}
+      </button>
+    );
+  }
+
+  return (
+    <div style={{ color: fg }}>
+      {/* progress */}
+      <div style={{ display: 'flex', gap: 4, marginBottom: 28 }}>
+        {steps.map((s, i) => (
+          <div key={i} style={{ flex: 1 }}>
+            <div style={{ height: 4, background: i <= step ? accent : border }} />
+            <div style={{ marginTop: 10, fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: i === step ? fg : muted }}>
+              {String(i + 1).padStart(2, '0')} · {s}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {step === 0 && (
+        <>
+          <Lbl>What are you pouring?</Lbl>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+            {[
+              ['driveway', 'Driveway / Walkway'],
+              ['foundation', 'Foundation / Footings'],
+              ['slab', 'Slab on grade'],
+              ['commercial', 'Commercial / Industrial'],
+              ['other', 'Something else'],
+            ].map(([v, l]) => (
+              <Choice key={v} value={v} current={data.project} onChange={(x) => set('project', x)} label={l} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {step === 1 && (
+        <>
+          <Lbl>Mix strength (PSI / MPa)</Lbl>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 24 }}>
+            {[['25', '25 MPa'], ['32', '32 MPa'], ['35', '35 MPa'], ['40', '40 MPa']].map(([v, l]) => (
+              <Choice key={v} value={v} current={data.psi} onChange={(x) => set('psi', x)} label={l} />
+            ))}
+          </div>
+          <Lbl>Volume (m³)</Lbl>
+          <Input value={data.volume} onChange={(v) => set('volume', v)} type="number" placeholder="15" />
+        </>
+      )}
+
+      {step === 2 && (
+        <>
+          <Lbl>Job site address</Lbl>
+          <div style={{ marginBottom: 16 }}>
+            <Input value={data.addr} onChange={(v) => set('addr', v)} placeholder="123 Main St, Toronto, ON" />
+          </div>
+          <Lbl>Pour date</Lbl>
+          <Input value={data.date} onChange={(v) => set('date', v)} type="date" />
+        </>
+      )}
+
+      {step === 3 && (
+        <>
+          <Lbl>Your name & company</Lbl>
+          <div style={{ marginBottom: 16 }}>
+            <Input value={data.name} onChange={(v) => set('name', v)} placeholder="J. Smith — Smith Construction Ltd." />
+          </div>
+          <Lbl>Phone</Lbl>
+          <div style={{ marginBottom: 16 }}>
+            <Input value={data.phone} onChange={(v) => set('phone', v)} placeholder="416-555-0199" />
+          </div>
+          <Lbl>Notes (access, pump, time window)</Lbl>
+          <Input value={data.notes} onChange={(v) => set('notes', v)} placeholder="Tight rear access, prefer 7am pour" />
+        </>
+      )}
+
+      {error && (
+        <div style={{ marginTop: 16, padding: '12px 16px', background: 'rgba(209,75,44,0.12)', color: '#D14B2C', fontSize: 13, fontWeight: 600 }}>
+          {error}
+        </div>
+      )}
+
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 28 }}>
+        <button
+          onClick={() => setStep(Math.max(0, step - 1))}
+          disabled={step === 0 || submitting}
+          style={{
+            padding: '14px 22px', background: 'transparent', border: `1px solid ${border}`,
+            color: step === 0 ? muted : fg, fontFamily: 'inherit', fontSize: 12, fontWeight: 700,
+            letterSpacing: '0.1em', textTransform: 'uppercase', cursor: step === 0 ? 'not-allowed' : 'pointer',
+          }}>
+          ← Back
+        </button>
+        <button
+          onClick={step === 3 ? submit : () => setStep(step + 1)}
+          disabled={submitting}
+          style={{
+            padding: '14px 28px', background: accent, border: 'none', color: '#0a0a0a',
+            fontFamily: 'inherit', fontSize: 12, fontWeight: 800, letterSpacing: '0.12em',
+            textTransform: 'uppercase', cursor: submitting ? 'wait' : 'pointer',
+            opacity: submitting ? 0.7 : 1,
+          }}>
+          {step === 3 ? (submitting ? 'Sending…' : 'Submit quote →') : 'Continue →'}
+        </button>
+      </div>
+    </div>
+  );
+}

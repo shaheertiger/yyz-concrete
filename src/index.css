@@ -1,0 +1,53 @@
+:root {
+  --accent: #FF6A00;
+  --fg: #1a1a1a;
+  --bg: #f0eee9;
+  --muted: rgba(26, 26, 26, 0.55);
+  --border: rgba(26, 26, 26, 0.12);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg);
+}
+
+body {
+  font-family: "Barlow", system-ui, sans-serif;
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography utility classes */
+.va-body { font-family: "Barlow", system-ui, sans-serif; }
+.va-mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+.va-disp {
+  font-family: "Barlow Condensed", "Oswald", sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+/* Animated underline link */
+.va-link { position: relative; padding-bottom: 2px; }
+.va-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s;
+}
+.va-link:hover::after { transform: scaleX(1); }
+
+/* Scrollbar suppression inside artboard-style containers */
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
