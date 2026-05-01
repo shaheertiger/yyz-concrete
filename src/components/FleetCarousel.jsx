@@ -12,14 +12,6 @@ const FLEET = [
     notes: 'Workhorse. Most residential and mid-size commercial pours.',
   },
   {
-    name: 'Mini Mixer',
-    code: 'M-04',
-    capacity: '4 m³',
-    spec: 'Tight-access · 4×2 chassis',
-    img: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80',
-    notes: "Backyard, laneway, basement underpins. Fits 8' gates.",
-  },
-  {
     name: 'Concrete Pump',
     code: 'P-32',
     capacity: '32 m boom',
@@ -28,12 +20,20 @@ const FLEET = [
     notes: 'High-rise pours, slab-on-deck, complex placement.',
   },
   {
-    name: 'Volumetric Mixer',
-    code: 'V-10',
-    capacity: '10 m³ on-site',
-    spec: 'Mix-on-demand · variable PSI',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
-    notes: 'Small or staggered pours. No short-load fees.',
+    name: 'Road Paver',
+    code: 'R-01',
+    capacity: 'Full lane width',
+    spec: 'Slip-form · highway grade',
+    img: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=1200&q=80',
+    notes: 'Municipal roads, highway reconstruction, industrial pads.',
+  },
+  {
+    name: 'Mini Mixer',
+    code: 'M-04',
+    capacity: '4 m³',
+    spec: 'Tight-access · 4×2 chassis',
+    img: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80',
+    notes: "Backyard, laneway, basement underpins. Fits 8' gates.",
   },
 ];
 

@@ -13,10 +13,18 @@ const BORDER = 'rgba(26,26,26,0.12)';
 const NOISE = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>")`;
 
 const IMAGES = {
+  // Hero — mixer truck on site
   mixer: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=2400&q=85',
-  slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80',
-  pump:  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80',
-  road:  'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=900&q=80',
+  // Services
+  slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80', // concrete slab pour
+  pump:  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80',  // concrete pump
+  // TODO: replace with CDN URL from → unsplash.com/photos/a-man-is-standing-on-a-slab-of-concrete-rnqRdfYyywM
+  concreteLevel: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80',
+  // TODO: replace with CDN URL from → unsplash.com/photos/a-construction-worker-is-working-on-the-side-of-a-building-B220pPYoDAg
+  detailLevel:   'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=900&q=80',
+  // TODO: replace with CDN URL from → unsplash.com/photos/heavy-work-for-a-construction-worker-on-the-site-kgo0BoAB4qY
+  heavyWork:     'https://images.unsplash.com/photo-1590536874543-7cc1e5ef80a4?w=900&q=80',
+  road:          'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=900&q=80',
 };
 
 const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'News', 'Contact'];
@@ -32,7 +40,7 @@ const SERVICES = [
   {
     n: '01', title: 'Ready-Mix Delivery',
     specs: ['15 – 50 MPa', 'Same-day dispatch', 'Onsite slump test'],
-    img: IMAGES.slab,
+    img: IMAGES.concreteLevel,
   },
   {
     n: '02', title: 'Concrete Pumping',
