@@ -92,7 +92,7 @@ export default function App() {
         background: '#fff',
       }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="/header-logo-cropped.png" alt="YYZ Concrete" style={{ height: mobile ? 80 : 100, width: 'auto', display: 'block' }} />
+          <img src="/header-logo-cropped.png" alt="YYZ Concrete" style={{ height: mobile ? 60 : 72, width: 'auto', display: 'block' }} />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
