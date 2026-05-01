@@ -311,7 +311,17 @@ export default function App() {
               <div key={h}>
                 <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 12 }}>{h.toUpperCase()}</div>
                 <ul className="va-body" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                  {items.map((x) => <li key={x} style={{ fontSize: 13, padding: '4px 0', color: 'rgba(240,238,233,0.7)' }}>{x}</li>)}
+                  {items.map((x) => (
+                    <li key={x} style={{ fontSize: 13, padding: '4px 0' }}>
+                      <a 
+                        href={`#${x.toLowerCase().replace(/\s+/g, '-')}`} 
+                        style={{ color: 'rgba(240,238,233,0.7)', textDecoration: 'none' }}
+                        className="va-link"
+                      >
+                        {x}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </div>
             ))}
