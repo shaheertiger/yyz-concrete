@@ -87,12 +87,11 @@ export default function App() {
       {/* ── Nav ─────────────────────────────────────────────── */}
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: `${mobile ? '10px' : '16px'} ${mobile ? '16px' : '32px'}`,
+        padding: `${mobile ? '14px' : '20px'} ${mobile ? '16px' : '32px'}`,
         borderBottom: `1px solid ${BORDER}`,
-        background: BG,
       }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="/logo-wide.png" alt="YYZ Concrete" style={{ height: mobile ? 52 : 68, width: 'auto', display: 'block' }} />
+          <img src="/logo-dark.png" alt="YYZ Concrete" style={{ height: mobile ? 44 : 56, width: 'auto', display: 'block' }} />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -299,7 +298,7 @@ export default function App() {
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer style={{ background: '#0a0a0a', color: '#f0eee9', padding: mobile ? '40px 20px 24px' : '80px 64px 40px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <img src="/logo-wide.png" alt="YYZ Concrete" style={{ width: '100%', maxWidth: mobile ? '280px' : '520px', height: 'auto', display: 'block', marginBottom: mobile ? 28 : 48 }} />
+          <img src="/logo-wide.png" alt="YYZ Concrete" style={{ width: mobile ? '80%' : '420px', height: 'auto', display: 'block', marginBottom: mobile ? 32 : 48 }} />
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: mobile ? 28 : 60, paddingTop: 32, borderTop: 'solid 1px rgba(240,238,233,0.15)' }}>
             <div style={{ gridColumn: mobile ? 'span 2' : 'auto' }}>
               <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 12 }}>HQ — ETOBICOKE</div>
