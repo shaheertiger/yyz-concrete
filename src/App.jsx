@@ -16,7 +16,7 @@ const IMAGES = {
   mixer: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=2400&q=85',
   slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80',
   pump:  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80',
-  mini:  'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=900&q=80',
+  road:  'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=900&q=80',
 };
 
 const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'News', 'Contact'];
@@ -40,9 +40,9 @@ const SERVICES = [
     img: IMAGES.pump,
   },
   {
-    n: '03', title: 'Volumetric / Mix-On-Site',
-    specs: ['No short-load fee', 'Variable PSI', '4–10 m³ per truck'],
-    img: IMAGES.mini,
+    n: '03', title: 'Road Reconstruction & Concrete',
+    specs: ['Municipal & highway grade', 'Full-depth reclamation', 'Curb, gutter & sidewalk'],
+    img: IMAGES.road,
   },
 ];
 
@@ -53,7 +53,7 @@ const CONTACTS = [
 ];
 
 const FOOTER_COLS = [
-  ['Services',  ['Ready-Mix', 'Pumping', 'Volumetric', 'Specialty Mixes']],
+  ['Services',  ['Ready-Mix', 'Pumping', 'Road Reconstruction', 'Specialty Mixes']],
   ['Company',   ['About', 'Fleet', 'Plants', 'Careers']],
   ['Resources', ['Calculator', 'Spec Sheets', 'Safety', 'News']],
 ];
