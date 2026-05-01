@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YYZ Concrete — Two Directions</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-shared.jsx"></script>
+<script type="text/babel" src="variation-a.jsx"></script>
+<script type="text/babel" src="variation-b.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#FF6A00",
+  "preset": "safety-orange"
+}/*EDITMODE-END*/;
+
+const PRESETS = {
+  "safety-orange": "#FF6A00",
+  "hi-vis-yellow": "#F5C518",
+  "concrete-red":  "#D14B2C",
+  "ontario-blue":  "#2D6CDF",
+  "raw-lime":      "#B6D63C",
+};
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const accent = t.accent;
+
+  return (
+    <>
+      <DesignCanvas>
+        <DCSection id="homepages" title="YYZ Concrete — Homepage" subtitle="Two industrial directions for a GTA ready-mix supplier">
+          <DCArtboard id="rugged" label="A · Rugged Industrial — condensed display, photo hero, dispatch log" width={1440} height={5400}>
+            <VariationA accent={accent} />
+          </DCArtboard>
+          <DCArtboard id="editorial" label="B · Editorial Type — type-led grid, marquee, monolithic mark" width={1440} height={5400}>
+            <VariationB accent={accent} />
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweaksPanel title="YYZ Tweaks">
+        <TweakSection label="Color" />
+        <TweakSelect
+          label="Preset"
+          value={t.preset}
+          options={[
+            { value: 'safety-orange', label: 'Safety Orange (default)' },
+            { value: 'hi-vis-yellow', label: 'Hi-Vis Yellow' },
+            { value: 'concrete-red',  label: 'Concrete Red' },
+            { value: 'ontario-blue',  label: 'Ontario Blue' },
+            { value: 'raw-lime',      label: 'Raw Lime' },
+          ]}
+          onChange={(v) => setTweak({ preset: v, accent: PRESETS[v] })}
+        />
+        <TweakColor
+          label="Accent (custom)"
+          value={t.accent}
+          onChange={(v) => setTweak('accent', v)}
+        />
+      </TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

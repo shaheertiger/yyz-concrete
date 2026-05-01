@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>YYZ Concrete — Two Directions</title>
+
+<!-- Resources referenced as strings inside JSX. The bundler inlines these
+     and exposes them as window.__resources[id] at runtime. -->
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=2400&q=85" data-resource-id="imgMixer" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80" data-resource-id="imgMini" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1800&q=85" data-resource-id="imgPump" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80" data-resource-id="imgVolu" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1564013434775-f71db0030976?w=1800&q=85" data-resource-id="imgSlab" />
+
+<!-- Fonts: bundler inlines linked stylesheets + their @font-face url() refs. -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&display=swap" />
+
+<style>
+  html, body { margin: 0; padding: 0; background: #f0eee9; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
+</style>
+
+<template id="__bundler_thumbnail" data-bg-color="#0a0a0a">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0a0a0a"/>
+    <g transform="translate(600 400)">
+      <rect x="-220" y="-220" width="440" height="440" fill="none" stroke="#FF6A00" stroke-width="6"/>
+      <text x="0" y="-30" text-anchor="middle" font-family="Arial Black, sans-serif" font-size="180" font-weight="900" fill="#f0eee9" letter-spacing="-6">YYZ</text>
+      <text x="0" y="100" text-anchor="middle" font-family="monospace" font-size="32" font-weight="700" fill="#FF6A00" letter-spacing="8">CONCRETE</text>
+      <line x1="-180" y1="160" x2="180" y2="160" stroke="#FF6A00" stroke-width="3"/>
+      <text x="0" y="200" text-anchor="middle" font-family="monospace" font-size="18" fill="#f0eee9" opacity="0.6" letter-spacing="6">READY-MIX · GTA</text>
+    </g>
+  </svg>
+</template>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="site-shared.standalone.jsx"></script>
+<script type="text/babel" src="variation-a.standalone.jsx"></script>
+<script type="text/babel" src="variation-b.standalone.jsx"></script>
+
+<script type="text/babel">
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "#FF6A00",
+  "preset": "safety-orange"
+}/*EDITMODE-END*/;
+
+const PRESETS = {
+  "safety-orange": "#FF6A00",
+  "hi-vis-yellow": "#F5C518",
+  "concrete-red":  "#D14B2C",
+  "ontario-blue":  "#2D6CDF",
+  "raw-lime":      "#B6D63C",
+};
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const accent = t.accent;
+
+  return (
+    <>
+      <DesignCanvas>
+        <DCSection id="homepages" title="YYZ Concrete — Homepage" subtitle="Two industrial directions for a GTA ready-mix supplier">
+          <DCArtboard id="rugged" label="A · Rugged Industrial — condensed display, photo hero, dispatch log" width={1440} height={5400}>
+            <VariationA accent={accent} />
+          </DCArtboard>
+          <DCArtboard id="editorial" label="B · Editorial Type — type-led grid, marquee, monolithic mark" width={1440} height={5400}>
+            <VariationB accent={accent} />
+          </DCArtboard>
+        </DCSection>
+      </DesignCanvas>
+
+      <TweaksPanel title="YYZ Tweaks">
+        <TweakSection label="Color" />
+        <TweakSelect
+          label="Preset"
+          value={t.preset}
+          options={[
+            { value: 'safety-orange', label: 'Safety Orange (default)' },
+            { value: 'hi-vis-yellow', label: 'Hi-Vis Yellow' },
+            { value: 'concrete-red',  label: 'Concrete Red' },
+            { value: 'ontario-blue',  label: 'Ontario Blue' },
+            { value: 'raw-lime',      label: 'Raw Lime' },
+          ]}
+          onChange={(v) => setTweak({ preset: v, accent: PRESETS[v] })}
+        />
+        <TweakColor
+          label="Accent (custom)"
+          value={t.accent}
+          onChange={(v) => setTweak('accent', v)}
+        />
+      </TweaksPanel>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
