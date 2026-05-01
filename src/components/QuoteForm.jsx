@@ -12,36 +12,29 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
   });
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
 
-  const submit = async () => {
+  const submit = () => {
     setSubmitting(true);
-    setError(null);
-    try {
-      const res = await fetch(FORMSUBMIT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          _subject: `Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`,
-          'Project type':   data.project,
-          'Mix strength':   `${data.psi} MPa`,
-          'Volume':         `${data.volume} m³`,
-          'Pour date':      data.date || 'TBD',
-          'Site address':   data.addr || '—',
-          'Name / company': data.name,
-          'Phone':          data.phone,
-          'Notes':          data.notes || '—',
-        }),
-      });
-      const json = await res.json();
-      if (json.success === 'true' || json.success === true) {
-        setStep(4);
-      } else {
-        setError('Submission failed — please call dispatch directly.');
-      }
-    } catch {
-      setError('Network error — please call dispatch directly.');
-    } finally {
-      setSubmitting(false);
-    }
+    const body = [
+      `Project type: ${data.project}`,
+      `Mix strength: ${data.psi} MPa`,
+      `Volume: ${data.volume} m³`,
+      `Pour date: ${data.date || 'TBD'}`,
+      `Site address: ${data.addr || '—'}`,
+      `Name / company: ${data.name}`,
+      `Phone: ${data.phone}`,
+      `Notes: ${data.notes || '—'}`,
+    ].join('\n');
+    const subject = encodeURIComponent(`Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`);
+    const bodyEncoded = encodeURIComponent(body);
+    window.location.href = `mailto:info@yyzconcrete.com?subject=${subject}&body=${bodyEncoded}`;
+    // Also attempt FormSubmit in background
+    fetch(FORMSUBMIT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ _subject: decodeURIComponent(subject), ...Object.fromEntries(body.split('\n').map(l => l.split(': '))) }),
+    }).catch(() => {});
+    setSubmitting(false);
+    setStep(4);
   };
 
   const fg = dark ? '#f0eee9' : '#1a1a1a';
