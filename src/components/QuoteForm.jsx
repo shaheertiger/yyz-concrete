@@ -1,13 +1,48 @@
 import { useState } from 'react';
 
 const ACCENT = '#FF6A00';
+const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/info@yyzconcrete.com';
 
 export default function QuoteForm({ accent = ACCENT, dark = false }) {
   const [step, setStep] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [data, setData] = useState({
     project: 'driveway', psi: '32', volume: '15', date: '', addr: '', name: '', phone: '', notes: '',
   });
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
+
+  const submit = async () => {
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch(FORMSUBMIT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`,
+          'Project type':   data.project,
+          'Mix strength':   `${data.psi} MPa`,
+          'Volume':         `${data.volume} m³`,
+          'Pour date':      data.date || 'TBD',
+          'Site address':   data.addr || '—',
+          'Name / company': data.name,
+          'Phone':          data.phone,
+          'Notes':          data.notes || '—',
+        }),
+      });
+      const json = await res.json();
+      if (json.success === 'true' || json.success === true) {
+        setStep(4);
+      } else {
+        setError('Submission failed — please call dispatch directly.');
+      }
+    } catch {
+      setError('Network error — please call dispatch directly.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const fg = dark ? '#f0eee9' : '#1a1a1a';
   const muted = dark ? 'rgba(240,238,233,0.55)' : 'rgba(26,26,26,0.55)';
@@ -148,10 +183,16 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
         </>
       )}
 
+      {error && (
+        <div style={{ marginTop: 16, padding: '12px 16px', background: 'rgba(209,75,44,0.12)', color: '#D14B2C', fontSize: 13, fontWeight: 600 }}>
+          {error}
+        </div>
+      )}
+
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 28 }}>
         <button
           onClick={() => setStep(Math.max(0, step - 1))}
-          disabled={step === 0}
+          disabled={step === 0 || submitting}
           style={{
             padding: '14px 22px', background: 'transparent', border: `1px solid ${border}`,
             color: step === 0 ? muted : fg, fontFamily: 'inherit', fontSize: 12, fontWeight: 700,
@@ -160,13 +201,15 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
           ← Back
         </button>
         <button
-          onClick={() => setStep(step + 1)}
+          onClick={step === 3 ? submit : () => setStep(step + 1)}
+          disabled={submitting}
           style={{
             padding: '14px 28px', background: accent, border: 'none', color: '#0a0a0a',
             fontFamily: 'inherit', fontSize: 12, fontWeight: 800, letterSpacing: '0.12em',
-            textTransform: 'uppercase', cursor: 'pointer',
+            textTransform: 'uppercase', cursor: submitting ? 'wait' : 'pointer',
+            opacity: submitting ? 0.7 : 1,
           }}>
-          {step === 3 ? 'Submit quote →' : 'Continue →'}
+          {step === 3 ? (submitting ? 'Sending…' : 'Submit quote →') : 'Continue →'}
         </button>
       </div>
     </div>
