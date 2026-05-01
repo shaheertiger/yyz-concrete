@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const ACCENT = '#FF6A00';
-const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/info@yyzconcrete.com';
 
 function Lbl({ children, muted }) {
   return (
@@ -57,25 +56,32 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
 
   const submit = () => {
     setSubmitting(true);
-    const body = [
-      `Project type: ${data.project}`,
-      `Mix strength: ${data.psi} MPa`,
-      `Volume: ${data.volume} m³`,
-      `Pour date: ${data.date || 'TBD'}`,
-      `Site address: ${data.addr || '—'}`,
-      `Name / company: ${data.name}`,
-      `Phone: ${data.phone}`,
-      `Notes: ${data.notes || '—'}`,
-    ].join('\n');
-    const subject = encodeURIComponent(`Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`);
-    window.location.href = `mailto:info@yyzconcrete.com?subject=${subject}&body=${encodeURIComponent(body)}`;
-    fetch(FORMSUBMIT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({ _subject: decodeURIComponent(subject), ...Object.fromEntries(body.split('\n').map(l => l.split(': '))) }),
-    }).catch(() => {});
-    setSubmitting(false);
-    setStep(4);
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'https://formsubmit.co/info@yyzconcrete.com';
+    const fields = {
+      '_subject':   `Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`,
+      '_captcha':   'false',
+      '_template':  'table',
+      '_next':      window.location.href,
+      'Project':    data.project,
+      'Mix (MPa)':  data.psi,
+      'Volume (m³)': data.volume,
+      'Pour date':  data.date || 'TBD',
+      'Site address': data.addr || '—',
+      'Name':       data.name,
+      'Phone':      data.phone,
+      'Notes':      data.notes || '—',
+    };
+    for (const [name, value] of Object.entries(fields)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = value;
+      form.appendChild(input);
+    }
+    document.body.appendChild(form);
+    form.submit();
   };
 
   const steps = ['Project', 'Mix & volume', 'Site & schedule', 'Contact'];
