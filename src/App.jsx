@@ -91,7 +91,7 @@ export default function App() {
         borderBottom: `1px solid ${BORDER}`,
       }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="/footer-logo.png" alt="YYZ Concrete" style={{ height: mobile ? 72 : 100, width: 'auto', display: 'block', maxWidth: mobile ? '60vw' : '100%' }} />
+          <img src="/header-logo-cropped.png" alt="YYZ Concrete" style={{ height: mobile ? 40 : 52, width: 'auto', display: 'block', maxWidth: mobile ? '60vw' : '100%' }} />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
