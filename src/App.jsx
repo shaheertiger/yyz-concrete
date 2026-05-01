@@ -135,14 +135,14 @@ export default function App() {
           <div className="va-mono" style={{ fontSize: mobile ? 10 : 12, fontWeight: 600, letterSpacing: '0.25em', color: ACCENT, marginBottom: mobile ? 12 : 20 }}>
             ◆ READY-MIX · PUMPING · VOLUMETRIC
           </div>
-          <h1 className="va-disp" style={{ fontSize: mobile ? 72 : 168, margin: 0, color: '#f0eee9' }}>
+          <h1 className="va-disp" style={{ fontSize: mobile ? 72 : 168, margin: 0, color: '#f0eee9', lineHeight: 0.9 }}>
             POUR<br />WHEN<br /><span style={{ color: ACCENT }}>YOU</span> SAY.
           </h1>
           <div style={{ marginTop: mobile ? 24 : 40, display: 'flex', flexDirection: mobile ? 'column' : 'row', alignItems: mobile ? 'stretch' : 'flex-end', gap: mobile ? 12 : 60 }}>
             {!mobile && (
-              <p className="va-body" style={{ fontSize: 18, fontWeight: 500, lineHeight: 1.5, maxWidth: 460, margin: 0, color: 'rgba(240,238,233,0.85)' }}>
-                Four GTA plants. 60-truck fleet. Same-day delivery on 90% of orders. Built for contractors who run on a clock, not a calendar.
-              </p>
+              <h2 className="va-body" style={{ fontSize: 18, fontWeight: 500, lineHeight: 1.5, maxWidth: 460, margin: 0, color: 'rgba(240,238,233,0.85)' }}>
+                YYZ Concrete: Four GTA plants. 60-truck fleet. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
+              </h2>
             )}
             <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
               <a href="#contact" style={{
