@@ -3,14 +3,57 @@ import { useState } from 'react';
 const ACCENT = '#FF6A00';
 const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/info@yyzconcrete.com';
 
+function Lbl({ children, muted }) {
+  return (
+    <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted, marginBottom: 8 }}>
+      {children}
+    </div>
+  );
+}
+
+function Input({ value, onChange, placeholder, type = 'text', fg, border }) {
+  return (
+    <input
+      type={type} value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder={placeholder}
+      style={{
+        width: '100%', padding: '14px 16px', border: `1px solid ${border}`,
+        background: 'transparent', color: fg, fontFamily: 'inherit', fontSize: 16,
+        fontWeight: 500, outline: 'none', boxSizing: 'border-box',
+      }}
+    />
+  );
+}
+
+function Choice({ value, current, onChange, label, accent, border, fg }) {
+  const active = current === value;
+  return (
+    <button
+      onClick={() => onChange(value)}
+      style={{
+        padding: '14px 16px',
+        border: `1px solid ${active ? accent : border}`,
+        background: active ? accent : 'transparent',
+        color: active ? '#0a0a0a' : fg,
+        fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left',
+      }}>
+      {label}
+    </button>
+  );
+}
+
 export default function QuoteForm({ accent = ACCENT, dark = false }) {
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState(null);
   const [data, setData] = useState({
     project: 'driveway', psi: '32', volume: '15', date: '', addr: '', name: '', phone: '', notes: '',
   });
   const set = (k, v) => setData((d) => ({ ...d, [k]: v }));
+
+  const fg = dark ? '#f0eee9' : '#1a1a1a';
+  const muted = dark ? 'rgba(240,238,233,0.55)' : 'rgba(26,26,26,0.55)';
+  const border = dark ? 'rgba(240,238,233,0.15)' : 'rgba(26,26,26,0.12)';
 
   const submit = () => {
     setSubmitting(true);
@@ -25,9 +68,7 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
       `Notes: ${data.notes || '—'}`,
     ].join('\n');
     const subject = encodeURIComponent(`Quote Request — ${data.project} — ${data.name || 'YYZ Web'}`);
-    const bodyEncoded = encodeURIComponent(body);
-    window.location.href = `mailto:info@yyzconcrete.com?subject=${subject}&body=${bodyEncoded}`;
-    // Also attempt FormSubmit in background
+    window.location.href = `mailto:info@yyzconcrete.com?subject=${subject}&body=${encodeURIComponent(body)}`;
     fetch(FORMSUBMIT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -36,10 +77,6 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
     setSubmitting(false);
     setStep(4);
   };
-
-  const fg = dark ? '#f0eee9' : '#1a1a1a';
-  const muted = dark ? 'rgba(240,238,233,0.55)' : 'rgba(26,26,26,0.55)';
-  const border = dark ? 'rgba(240,238,233,0.15)' : 'rgba(26,26,26,0.12)';
 
   const steps = ['Project', 'Mix & volume', 'Site & schedule', 'Contact'];
 
@@ -66,49 +103,8 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
     );
   }
 
-  function Lbl({ children }) {
-    return (
-      <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted, marginBottom: 8 }}>
-        {children}
-      </div>
-    );
-  }
-
-  function Input({ value, onChange, placeholder, type = 'text' }) {
-    return (
-      <input
-        type={type} value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder={placeholder}
-        style={{
-          width: '100%', padding: '14px 16px', border: `1px solid ${border}`,
-          background: 'transparent', color: fg, fontFamily: 'inherit', fontSize: 16,
-          fontWeight: 500, outline: 'none', boxSizing: 'border-box',
-        }}
-      />
-    );
-  }
-
-  function Choice({ value, current, onChange, label }) {
-    const active = current === value;
-    return (
-      <button
-        onClick={() => onChange(value)}
-        style={{
-          padding: '14px 16px',
-          border: `1px solid ${active ? accent : border}`,
-          background: active ? accent : 'transparent',
-          color: active ? '#0a0a0a' : fg,
-          fontFamily: 'inherit', fontSize: 14, fontWeight: 600, cursor: 'pointer', textAlign: 'left',
-        }}>
-        {label}
-      </button>
-    );
-  }
-
   return (
     <div style={{ color: fg }}>
-      {/* progress */}
       <div style={{ display: 'flex', gap: 4, marginBottom: 28 }}>
         {steps.map((s, i) => (
           <div key={i} style={{ flex: 1 }}>
@@ -122,7 +118,7 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
 
       {step === 0 && (
         <>
-          <Lbl>What are you pouring?</Lbl>
+          <Lbl muted={muted}>What are you pouring?</Lbl>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
             {[
               ['driveway', 'Driveway / Walkway'],
@@ -131,7 +127,7 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
               ['commercial', 'Commercial / Industrial'],
               ['other', 'Something else'],
             ].map(([v, l]) => (
-              <Choice key={v} value={v} current={data.project} onChange={(x) => set('project', x)} label={l} />
+              <Choice key={v} value={v} current={data.project} onChange={(x) => set('project', x)} label={l} accent={accent} border={border} fg={fg} />
             ))}
           </div>
         </>
@@ -139,47 +135,41 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
 
       {step === 1 && (
         <>
-          <Lbl>Mix strength (PSI / MPa)</Lbl>
+          <Lbl muted={muted}>Mix strength (PSI / MPa)</Lbl>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 24 }}>
             {[['25', '25 MPa'], ['32', '32 MPa'], ['35', '35 MPa'], ['40', '40 MPa']].map(([v, l]) => (
-              <Choice key={v} value={v} current={data.psi} onChange={(x) => set('psi', x)} label={l} />
+              <Choice key={v} value={v} current={data.psi} onChange={(x) => set('psi', x)} label={l} accent={accent} border={border} fg={fg} />
             ))}
           </div>
-          <Lbl>Volume (m³)</Lbl>
-          <Input value={data.volume} onChange={(v) => set('volume', v)} type="number" placeholder="15" />
+          <Lbl muted={muted}>Volume (m³)</Lbl>
+          <Input value={data.volume} onChange={(v) => set('volume', v)} type="number" placeholder="15" fg={fg} border={border} />
         </>
       )}
 
       {step === 2 && (
         <>
-          <Lbl>Job site address</Lbl>
+          <Lbl muted={muted}>Job site address</Lbl>
           <div style={{ marginBottom: 16 }}>
-            <Input value={data.addr} onChange={(v) => set('addr', v)} placeholder="123 Main St, Toronto, ON" />
+            <Input value={data.addr} onChange={(v) => set('addr', v)} placeholder="123 Main St, Toronto, ON" fg={fg} border={border} />
           </div>
-          <Lbl>Pour date</Lbl>
-          <Input value={data.date} onChange={(v) => set('date', v)} type="date" />
+          <Lbl muted={muted}>Pour date</Lbl>
+          <Input value={data.date} onChange={(v) => set('date', v)} type="date" fg={fg} border={border} />
         </>
       )}
 
       {step === 3 && (
         <>
-          <Lbl>Your name & company</Lbl>
+          <Lbl muted={muted}>Your name & company</Lbl>
           <div style={{ marginBottom: 16 }}>
-            <Input value={data.name} onChange={(v) => set('name', v)} placeholder="J. Smith — Smith Construction Ltd." />
+            <Input value={data.name} onChange={(v) => set('name', v)} placeholder="J. Smith — Smith Construction Ltd." fg={fg} border={border} />
           </div>
-          <Lbl>Phone</Lbl>
+          <Lbl muted={muted}>Phone</Lbl>
           <div style={{ marginBottom: 16 }}>
-            <Input value={data.phone} onChange={(v) => set('phone', v)} placeholder="416-555-0199" />
+            <Input value={data.phone} onChange={(v) => set('phone', v)} placeholder="416-555-0199" fg={fg} border={border} />
           </div>
-          <Lbl>Notes (access, pump, time window)</Lbl>
-          <Input value={data.notes} onChange={(v) => set('notes', v)} placeholder="Tight rear access, prefer 7am pour" />
+          <Lbl muted={muted}>Notes (access, pump, time window)</Lbl>
+          <Input value={data.notes} onChange={(v) => set('notes', v)} placeholder="Tight rear access, prefer 7am pour" fg={fg} border={border} />
         </>
-      )}
-
-      {error && (
-        <div style={{ marginTop: 16, padding: '12px 16px', background: 'rgba(209,75,44,0.12)', color: '#D14B2C', fontSize: 13, fontWeight: 600 }}>
-          {error}
-        </div>
       )}
 
       <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 28 }}>
