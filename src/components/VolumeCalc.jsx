@@ -92,7 +92,13 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
       </div>
 
       {/* fields */}
-      <div style={{ display: 'grid', gridTemplateColumns: shape === 'column' ? '1fr 1fr' : (mobile ? '1fr 1fr' : '1fr 1fr 1fr'), gap: 14, marginBottom: 24 }}>
+      {/* fields */}
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: shape === 'column' ? '1fr 1fr' : (mobile ? '1fr' : '1fr 1fr 1fr'), 
+        gap: 14, 
+        marginBottom: 24 
+      }}>
         {shape === 'slab' && (
           <>
             <Field label="Length" value={dims.length} onChange={(v) => set('length', v)} suffix={lengthUnit} />
@@ -131,10 +137,19 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
       </div>
 
       {/* result */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0, border: `1px solid ${border}` }}>
-        <div style={{ padding: '20px 22px', borderRight: `1px solid ${border}` }}>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: mobile ? '1fr' : '1fr 1fr', 
+        gap: 0, 
+        border: `1px solid ${border}` 
+      }}>
+        <div style={{ 
+          padding: '20px 22px', 
+          borderRight: mobile ? 'none' : `1px solid ${border}`,
+          borderBottom: mobile ? `1px solid ${border}` : 'none'
+        }}>
           <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted, marginBottom: 8 }}>Volume needed</div>
-          <div style={{ fontSize: 44, fontWeight: 800, lineHeight: 1, fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>
+          <div style={{ fontSize: mobile ? 36 : 44, fontWeight: 800, lineHeight: 1, fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>
             {cubic.m3.toFixed(2)} <span style={{ fontSize: 16, fontWeight: 600, color: muted }}>m³</span>
           </div>
           <div style={{ fontSize: 13, color: muted, marginTop: 6, fontVariantNumeric: 'tabular-nums' }}>
@@ -143,7 +158,7 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
         </div>
         <div style={{ padding: '20px 22px', background: accent, color: '#0a0a0a' }}>
           <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>Trucks required</div>
-          <div style={{ fontSize: 44, fontWeight: 800, lineHeight: 1, fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>
+          <div style={{ fontSize: mobile ? 36 : 44, fontWeight: 800, lineHeight: 1, fontVariantNumeric: 'tabular-nums', letterSpacing: '-0.02em' }}>
             {trucks} <span style={{ fontSize: 16, fontWeight: 600 }}>×</span>
           </div>
           <div style={{ fontSize: 13, marginTop: 6, fontWeight: 600 }}>
