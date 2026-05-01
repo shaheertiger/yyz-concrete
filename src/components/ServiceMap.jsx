@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const ACCENT = '#FF6A00';
 
@@ -12,6 +13,7 @@ const PLANTS = [
 ];
 
 export default function ServiceMap({ accent = ACCENT, dark = false }) {
+  const mobile = useIsMobile();
   const [hover, setHover] = useState(null);
   const fg = dark ? '#f0eee9' : '#1a1a1a';
   const bgFill = dark ? '#1a1a1a' : '#e8e6e0';
@@ -19,8 +21,8 @@ export default function ServiceMap({ accent = ACCENT, dark = false }) {
   const muted = dark ? 'rgba(240,238,233,0.5)' : 'rgba(26,26,26,0.45)';
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr', gap: 0, border: `1px solid ${stroke}`, background: bgFill, color: fg }}>
-      <div style={{ position: 'relative', aspectRatio: '4/3', borderRight: `1px solid ${stroke}`, overflow: 'hidden' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1.4fr 1fr', gap: 0, border: `1px solid ${stroke}`, background: bgFill, color: fg }}>
+      <div style={{ position: 'relative', aspectRatio: '4/3', borderRight: mobile ? 'none' : `1px solid ${stroke}`, borderBottom: mobile ? `1px solid ${stroke}` : 'none', overflow: 'hidden' }}>
         <svg viewBox="0 0 100 75" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
           {/* Lake Ontario */}
           <path d="M0 70 L100 68 L100 75 L0 75 Z" fill={dark ? '#0a0a0a' : '#d6d3cc'} />

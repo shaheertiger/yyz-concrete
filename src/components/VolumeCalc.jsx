@@ -1,8 +1,10 @@
 import { useState, useMemo } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const ACCENT = '#FF6A00';
 
 export default function VolumeCalc({ accent = ACCENT, dark = false }) {
+  const mobile = useIsMobile();
   const [shape, setShape] = useState('slab');
   const [units, setUnits] = useState('ft');
   const [dims, setDims] = useState({ length: 20, width: 10, depth: 4, dia: 12, height: 8 });
@@ -90,7 +92,7 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
       </div>
 
       {/* fields */}
-      <div style={{ display: 'grid', gridTemplateColumns: shape === 'column' ? '1fr 1fr' : '1fr 1fr 1fr', gap: 14, marginBottom: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: shape === 'column' ? '1fr 1fr' : (mobile ? '1fr 1fr' : '1fr 1fr 1fr'), gap: 14, marginBottom: 24 }}>
         {shape === 'slab' && (
           <>
             <Field label="Length" value={dims.length} onChange={(v) => set('length', v)} suffix={lengthUnit} />

@@ -90,22 +90,9 @@ export default function App() {
         padding: `${mobile ? '14px' : '20px'} ${mobile ? '16px' : '32px'}`,
         borderBottom: `1px solid ${BORDER}`,
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <div style={{
-            width: 40, height: 40, background: '#0a0a0a',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-          }}>
-            <div style={{ width: 18, height: 18, background: ACCENT, transform: 'rotate(45deg)' }} />
-          </div>
-          <div>
-            <div className="va-disp" style={{ fontSize: mobile ? 18 : 22, lineHeight: 1 }}>YYZ Concrete</div>
-            {!mobile && (
-              <div className="va-mono" style={{ fontSize: 9, color: MUTED, letterSpacing: '0.2em', marginTop: 2 }}>
-                READY-MIX · GTA · EST. 1968
-              </div>
-            )}
-          </div>
-        </div>
+        <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <img src="/logo.png" alt="YYZ Concrete" style={{ height: mobile ? 48 : 60, width: 'auto', display: 'block' }} />
+        </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
             {NAV_LINKS.map((x) => (
@@ -311,7 +298,7 @@ export default function App() {
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer style={{ background: '#0a0a0a', color: '#f0eee9', padding: mobile ? '40px 20px 24px' : '80px 64px 40px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <div className="va-disp" style={{ fontSize: mobile ? 80 : 200, lineHeight: 0.9, color: ACCENT, marginBottom: mobile ? 32 : 60 }}>YYZ.</div>
+          <img src="/2.png" alt="YYZ Concrete" style={{ height: mobile ? 80 : 140, width: 'auto', display: 'block', marginBottom: mobile ? 32 : 48 }} />
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: mobile ? 28 : 60, paddingTop: 32, borderTop: 'solid 1px rgba(240,238,233,0.15)' }}>
             <div style={{ gridColumn: mobile ? 'span 2' : 'auto' }}>
               <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 12 }}>HQ — ETOBICOKE</div>
