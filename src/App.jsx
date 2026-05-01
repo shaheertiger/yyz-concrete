@@ -2,7 +2,6 @@ import VolumeCalc from './components/VolumeCalc';
 import FleetCarousel from './components/FleetCarousel';
 import ServiceMap from './components/ServiceMap';
 import QuoteForm from './components/QuoteForm';
-import NewsList from './components/NewsList';
 
 const ACCENT = '#FF6A00';
 const FG = '#1a1a1a';
@@ -17,14 +16,14 @@ const IMAGES = {
   mixer: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=2400&q=85',
   // Services
   slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80', // concrete slab pour
-  pump:  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80',  // concrete pump
+  pump:  'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80',
   concreteLevel: 'https://images.unsplash.com/photo-1673978483810-ad14e573eece?w=900&q=80',
   detailLevel:   'https://images.unsplash.com/photo-1685464196339-46a985b2049b?w=900&q=80',
   heavyWork:     'https://plus.unsplash.com/premium_photo-1683121530725-e9ddd6c74ef1?w=900&q=80',
-  road:          'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=900&q=80',
+  road:          'https://images.unsplash.com/photo-1773432114391-f85c1674b233?w=900&q=80',
 };
 
-const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'News', 'Contact'];
+const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'Contact'];
 
 const STATS = [
   ['58',   'YEARS POURING',    'GTA'],
@@ -60,7 +59,7 @@ const CONTACTS = [
 const FOOTER_COLS = [
   ['Services',  ['Ready-Mix', 'Pumping', 'Road Reconstruction', 'Specialty Mixes']],
   ['Company',   ['About', 'Fleet', 'Plants', 'Careers']],
-  ['Resources', ['Calculator', 'Spec Sheets', 'Safety', 'News']],
+  ['Resources', ['Calculator', 'Spec Sheets', 'Safety']],
 ];
 
 export default function App() {
@@ -289,19 +288,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* ── News / Dispatch Log ──────────────────────────────── */}
-      <section id="news" style={{ maxWidth: 1400, margin: '0 auto', padding: '120px 64px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 48 }}>
-          <div>
-            <div className="va-mono" style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 16 }}>◆ 06 / DISPATCH LOG</div>
-            <h2 className="va-disp" style={{ fontSize: 96, margin: 0 }}>From the yard.</h2>
-          </div>
-          <a href="#" className="va-mono va-link" style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: FG, textDecoration: 'none' }}>
-            All Updates →
-          </a>
-        </div>
-        <NewsList accent={ACCENT} />
-      </section>
 
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer style={{ background: '#0a0a0a', color: '#f0eee9', padding: '80px 64px 40px' }}>
