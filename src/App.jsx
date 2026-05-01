@@ -18,12 +18,9 @@ const IMAGES = {
   // Services
   slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80', // concrete slab pour
   pump:  'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80',  // concrete pump
-  // TODO: replace with CDN URL from → unsplash.com/photos/a-man-is-standing-on-a-slab-of-concrete-rnqRdfYyywM
-  concreteLevel: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80',
-  // TODO: replace with CDN URL from → unsplash.com/photos/a-construction-worker-is-working-on-the-side-of-a-building-B220pPYoDAg
-  detailLevel:   'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=900&q=80',
-  // TODO: replace with CDN URL from → unsplash.com/photos/heavy-work-for-a-construction-worker-on-the-site-kgo0BoAB4qY
-  heavyWork:     'https://images.unsplash.com/photo-1590536874543-7cc1e5ef80a4?w=900&q=80',
+  concreteLevel: 'https://images.unsplash.com/photo-1673978483810-ad14e573eece?w=900&q=80',
+  detailLevel:   'https://images.unsplash.com/photo-1685464196339-46a985b2049b?w=900&q=80',
+  heavyWork:     'https://plus.unsplash.com/premium_photo-1683121530725-e9ddd6c74ef1?w=900&q=80',
   road:          'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=900&q=80',
 };
 
