@@ -89,6 +89,7 @@ export default function App() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: `${mobile ? '14px' : '20px'} ${mobile ? '16px' : '32px'}`,
         borderBottom: `1px solid ${BORDER}`,
+        background: '#fff',
       }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src="/footer-logo-transparent.png" alt="YYZ Concrete" style={{ height: mobile ? 80 : 110, width: 'auto', display: 'block', maxWidth: mobile ? '75vw' : '100%' }} />
