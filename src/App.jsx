@@ -91,7 +91,7 @@ export default function App() {
         borderBottom: `1px solid ${BORDER}`,
       }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img src="/logo.png" alt="YYZ Concrete" style={{ height: mobile ? 48 : 60, width: 'auto', display: 'block' }} />
+          <img src="/logo.png" alt="YYZ Concrete" style={{ height: mobile ? 48 : 60, width: 'auto', display: 'block', mixBlendMode: 'multiply' }} />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
@@ -298,7 +298,7 @@ export default function App() {
       {/* ── Footer ──────────────────────────────────────────── */}
       <footer style={{ background: '#0a0a0a', color: '#f0eee9', padding: mobile ? '40px 20px 24px' : '80px 64px 40px' }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-          <img src="/2.png" alt="YYZ Concrete" style={{ height: mobile ? 80 : 140, width: 'auto', display: 'block', marginBottom: mobile ? 32 : 48 }} />
+          <img src="/logo-dark.png" alt="YYZ Concrete" style={{ height: mobile ? 100 : 180, width: 'auto', display: 'block', marginBottom: mobile ? 24 : 40 }} />
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr 1fr' : '2fr 1fr 1fr 1fr', gap: mobile ? 28 : 60, paddingTop: 32, borderTop: 'solid 1px rgba(240,238,233,0.15)' }}>
             <div style={{ gridColumn: mobile ? 'span 2' : 'auto' }}>
               <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 12 }}>HQ — ETOBICOKE</div>
