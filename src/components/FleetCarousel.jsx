@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const ACCENT = '#FF6A00';
 
@@ -56,6 +57,7 @@ function NavBtn({ dir, onClick, fg, border }) {
 }
 
 export default function FleetCarousel({ accent = ACCENT, dark = false }) {
+  const mobile = useIsMobile();
   const [idx, setIdx] = useState(0);
   const fg = dark ? '#f0eee9' : '#1a1a1a';
   const muted = dark ? 'rgba(240,238,233,0.6)' : 'rgba(26,26,26,0.55)';
@@ -82,7 +84,7 @@ export default function FleetCarousel({ accent = ACCENT, dark = false }) {
       </div>
 
       {/* spec strip */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderBottom: `1px solid ${border}` }}>
+      <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1fr 1fr 1fr', borderBottom: `1px solid ${border}` }}>
         <Spec label="Capacity" value={item.capacity} border={border} muted={muted} />
         <Spec label="Spec" value={item.spec} border={border} muted={muted} />
         <Spec label="Use" value={item.notes} border="none" muted={muted} small />

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const ACCENT = '#FF6A00';
 
@@ -43,6 +44,7 @@ function Choice({ value, current, onChange, label, accent, border, fg }) {
 }
 
 export default function QuoteForm({ accent = ACCENT, dark = false }) {
+  const mobile = useIsMobile();
   const [step, setStep] = useState(0);
   const [submitting, setSubmitting] = useState(false);
   const [data, setData] = useState({
@@ -142,7 +144,7 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
       {step === 1 && (
         <>
           <Lbl muted={muted}>Mix strength (PSI / MPa)</Lbl>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 8, marginBottom: 24 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr 1fr' : 'repeat(4, 1fr)', gap: 8, marginBottom: 24 }}>
             {[['25', '25 MPa'], ['32', '32 MPa'], ['35', '35 MPa'], ['40', '40 MPa']].map(([v, l]) => (
               <Choice key={v} value={v} current={data.psi} onChange={(x) => set('psi', x)} label={l} accent={accent} border={border} fg={fg} />
             ))}
