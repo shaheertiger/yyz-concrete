@@ -48,7 +48,7 @@ const SERVICES = [
 
 const CONTACTS = [
   ['Direct dispatch', '647-926-5914'],
-  ['Quote desk',      'quotes@yyzconcrete.ca'],
+  ['Quote desk',      'info@yyzconcrete.com'],
   ['After hours',     '647-926-5914'],
 ];
 
