@@ -47,9 +47,9 @@ const SERVICES = [
 ];
 
 const CONTACTS = [
-  ['Direct dispatch', '416-555-7000'],
+  ['Direct dispatch', '647-926-5914'],
   ['Quote desk',      'quotes@yyzconcrete.ca'],
-  ['After hours',     '416-555-7099'],
+  ['After hours',     '647-926-5914'],
 ];
 
 const FOOTER_COLS = [
@@ -70,7 +70,7 @@ export default function App() {
           padding: '8px 32px', display: 'flex', justifyContent: 'space-between',
           letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600,
         }}>
-        <span>YYZ-DISPATCH · 416-555-7000 · Open 6:00 — 18:00</span>
+        <span>YYZ-DISPATCH · 647-926-5914 · Open 6:00 — 18:00</span>
         <span style={{ display: 'flex', gap: 24 }}>
           <span>
             Mon Apr 27 · GTA · 8°C — pour conditions:{' '}
@@ -156,7 +156,7 @@ export default function App() {
               }}>
                 Get Quote →
               </a>
-              <a href="tel:4165557000" style={{
+              <a href="tel:6479265914" style={{
                 padding: '18px 28px', background: 'transparent', color: '#f0eee9',
                 border: '2px solid #f0eee9', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
                 letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
