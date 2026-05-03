@@ -19,7 +19,7 @@ const IMAGES = {
   concreteLevel: 'https://images.unsplash.com/photo-1673978483810-ad14e573eece?w=900&q=80',
   detailLevel:   'https://images.unsplash.com/photo-1685464196339-46a985b2049b?w=900&q=80',
   heavyWork:     'https://plus.unsplash.com/premium_photo-1683121530725-e9ddd6c74ef1?w=900&q=80',
-  road:          'https://images.unsplash.com/photo-1773432114391-f85c1674b233?w=900&q=80',
+  road:          '/road-reconstruction.png',
 };
 
 const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'Contact'];
