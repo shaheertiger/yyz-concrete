@@ -26,7 +26,7 @@ const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'Contact'];
 
 const STATS = [
   ['58',   'YEARS POURING',    'GTA'],
-  ['04',   'PLANTS',           'ETO · MIS · VAU · SCA'],
+  ['01',   'PLANT',            'ETOBICOKE'],
   ['9 m³', 'PER MIXER',        '60-TRUCK FLEET'],
   ['<2 H', 'QUOTE TURNAROUND', 'OFFICE HOURS'],
 ];
@@ -50,9 +50,9 @@ const SERVICES = [
 ];
 
 const CONTACTS = [
-  ['Direct dispatch', '647-926-5914'],
+  ['Direct dispatch', '(647) 465-1114'],
   ['Quote desk',      'info@yyzconcrete.com'],
-  ['After hours',     '647-926-5914'],
+  ['After hours',     '(647) 465-1114'],
 ];
 
 const FOOTER_COLS = [
@@ -75,7 +75,7 @@ export default function App() {
         display: 'flex', justifyContent: 'space-between',
         letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600,
       }}>
-        <span>YYZ · 647-926-5914 · 6:00 — 18:00</span>
+        <span>YYZ · (647) 465-1114 · 6:00 — 18:00</span>
         {!mobile && (
           <span style={{ display: 'flex', gap: 24 }}>
             <span>Mon Apr 27 · GTA · 8°C — pour conditions: <span style={{ color: ACCENT }}>GOOD</span></span>
@@ -184,7 +184,7 @@ export default function App() {
             ))}
           </nav>
         )}
-        <a href={mobile ? 'tel:6479265914' : '#contact'} style={{
+        <a href={mobile ? 'tel:6474651114' : '#contact'} style={{
           padding: mobile ? '10px 14px' : '12px 22px',
           background: ACCENT, color: '#0a0a0a',
           border: 'none', fontFamily: 'inherit', fontSize: mobile ? 11 : 12, fontWeight: 700,
@@ -224,7 +224,7 @@ export default function App() {
           <div style={{ marginTop: mobile ? 24 : 40, display: 'flex', flexDirection: mobile ? 'column' : 'row', alignItems: mobile ? 'stretch' : 'flex-end', gap: mobile ? 12 : 60 }}>
             {!mobile && (
               <h2 className="va-body" style={{ fontSize: 18, fontWeight: 500, lineHeight: 1.5, maxWidth: 460, margin: 0, color: 'rgba(240,238,233,0.85)' }}>
-                YYZ Concrete: Four GTA plants. 60-truck fleet. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
+                YYZ Concrete: Etobicoke plant at 200 Rexdale Blvd. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
               </h2>
             )}
             <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
@@ -236,7 +236,7 @@ export default function App() {
               }}>
                 Get Quote →
               </a>
-              <a href="tel:6479265914" style={{
+              <a href="tel:6474651114" style={{
                 padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: '#f0eee9',
                 border: '2px solid rgba(240,238,233,0.6)', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
                 letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
@@ -326,9 +326,9 @@ export default function App() {
           </div>
           <div id="yards">
             <div className="va-mono" style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 14 }}>◆ 03 / SERVICE AREA</div>
-            <h2 className="va-disp" style={{ fontSize: mobile ? 48 : 72, margin: '0 0 20px', color: '#f0eee9' }}>Four plants.<br />One GTA.</h2>
+            <h2 className="va-disp" style={{ fontSize: mobile ? 48 : 72, margin: '0 0 20px', color: '#f0eee9' }}>One plant.<br />All GTA.</h2>
             <p className="va-body" style={{ fontSize: 15, color: 'rgba(240,238,233,0.65)', lineHeight: 1.6, marginBottom: 24 }}>
-              Etobicoke HQ plus three satellite plants. Whatever your zip code, we've got a mixer that's already on the way.
+              Etobicoke plant at 200 Rexdale Blvd. Serving the entire GTA — wherever you're pouring, we've got a mixer on the way.
             </p>
             <ServiceMap accent={ACCENT} dark />
           </div>

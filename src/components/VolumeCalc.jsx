@@ -7,35 +7,36 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
   const mobile = useIsMobile();
   const [shape, setShape] = useState('slab');
   const [units, setUnits] = useState('ft');
-  const [dims, setDims] = useState({ length: 20, width: 10, depth: 4, dia: 12, height: 8 });
+  const [dims, setDims] = useState({ length: '20', width: '10', depth: '4', dia: '12', height: '8' });
 
-  const set = (k, v) => setDims((d) => ({ ...d, [k]: Number(v) || 0 }));
+  const set = (k, v) => setDims((d) => ({ ...d, [k]: v }));
+  const n = (k) => parseFloat(dims[k]) || 0;
 
   const cubic = useMemo(() => {
     if (shape === 'slab') {
       if (units === 'ft') {
-        const cuft = dims.length * dims.width * (dims.depth / 12);
+        const cuft = n('length') * n('width') * (n('depth') / 12);
         return { yd3: cuft / 27, m3: cuft * 0.0283168 };
       }
-      const m3 = dims.length * dims.width * (dims.depth / 100);
+      const m3 = n('length') * n('width') * (n('depth') / 100);
       return { yd3: m3 * 1.30795, m3 };
     }
     if (shape === 'footing') {
       if (units === 'ft') {
-        const cuft = dims.length * (dims.width / 12) * (dims.depth / 12);
+        const cuft = n('length') * (n('width') / 12) * (n('depth') / 12);
         return { yd3: cuft / 27, m3: cuft * 0.0283168 };
       }
-      const m3 = dims.length * (dims.width / 100) * (dims.depth / 100);
+      const m3 = n('length') * (n('width') / 100) * (n('depth') / 100);
       return { yd3: m3 * 1.30795, m3 };
     }
     // column
     if (units === 'ft') {
-      const r = dims.dia / 2 / 12;
-      const cuft = Math.PI * r * r * dims.height;
+      const r = n('dia') / 2 / 12;
+      const cuft = Math.PI * r * r * n('height');
       return { yd3: cuft / 27, m3: cuft * 0.0283168 };
     }
-    const r = dims.dia / 2 / 100;
-    const m3 = Math.PI * r * r * dims.height;
+    const r = n('dia') / 2 / 100;
+    const m3 = Math.PI * r * r * n('height');
     return { yd3: m3 * 1.30795, m3 };
   }, [shape, units, dims]);
 
@@ -67,7 +68,8 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
         <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted }}>{label}</span>
         <div style={{ display: 'flex', alignItems: 'center', border: `1px solid ${border}`, background: fieldBg }}>
           <input
-            type="number"
+            type="text"
+            inputMode="decimal"
             value={value}
             onChange={(e) => onChange(e.target.value)}
             style={{
