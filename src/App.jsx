@@ -101,7 +101,6 @@ export default function App() {
             style={mobile
               ? { width: '100%', height: 'auto', display: 'block' }
               : { height: 76, width: 'auto', display: 'block' }}
-            }
           />
         </a>
         {!mobile && (
