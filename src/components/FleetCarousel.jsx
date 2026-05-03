@@ -9,7 +9,7 @@ const FLEET = [
     code: 'M-09',
     capacity: '9 m³',
     spec: 'Front-discharge · 6×6 chassis',
-    img: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=1200&q=80',
+    img: '/1.png',
     notes: 'Workhorse. Most residential and mid-size commercial pours.',
   },
   {
@@ -17,7 +17,7 @@ const FLEET = [
     code: 'P-32',
     capacity: '32 m boom',
     spec: 'Truck-mounted · 5-section Z-fold',
-    img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+    img: '/2.png',
     notes: 'High-rise pours, slab-on-deck, complex placement.',
   },
   {
@@ -25,7 +25,7 @@ const FLEET = [
     code: 'R-01',
     capacity: 'Full lane width',
     spec: 'Slip-form · highway grade',
-    img: 'https://images.unsplash.com/photo-1573496799652-408c2ac9fe98?w=1200&q=80',
+    img: '/3.png',
     notes: 'Municipal roads, highway reconstruction, industrial pads.',
   },
   {
@@ -33,7 +33,7 @@ const FLEET = [
     code: 'M-04',
     capacity: '4 m³',
     spec: 'Tight-access · 4×2 chassis',
-    img: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80',
+    img: '/4.png',
     notes: "Backyard, laneway, basement underpins. Fits 8' gates.",
   },
 ];

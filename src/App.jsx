@@ -26,7 +26,7 @@ const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'Contact'];
 
 const STATS = [
   ['58',   'YEARS POURING',    'GTA'],
-  ['04',   'PLANTS',           'ETO · MIS · VAU · SCA'],
+  ['01',   'PLANT',            'ETOBICOKE'],
   ['9 m³', 'PER MIXER',        '60-TRUCK FLEET'],
   ['<2 H', 'QUOTE TURNAROUND', 'OFFICE HOURS'],
 ];
@@ -50,9 +50,9 @@ const SERVICES = [
 ];
 
 const CONTACTS = [
-  ['Direct dispatch', '647-926-5914'],
+  ['Direct dispatch', '(647) 465-1114'],
   ['Quote desk',      'info@yyzconcrete.com'],
-  ['After hours',     '647-926-5914'],
+  ['After hours',     '(647) 465-1114'],
 ];
 
 const FOOTER_COLS = [
@@ -75,7 +75,7 @@ export default function App() {
         display: 'flex', justifyContent: 'space-between',
         letterSpacing: '0.08em', textTransform: 'uppercase', fontWeight: 600,
       }}>
-        <span>YYZ · 647-926-5914 · 6:00 — 18:00</span>
+        <span>YYZ · (647) 465-1114 · 6:00 — 18:00</span>
         {!mobile && (
           <span style={{ display: 'flex', gap: 24 }}>
             <span>Mon Apr 27 · GTA · 8°C — pour conditions: <span style={{ color: ACCENT }}>GOOD</span></span>
@@ -90,7 +90,90 @@ export default function App() {
         padding: `${mobile ? '14px' : '20px'} ${mobile ? '16px' : '32px'}`,
         borderBottom: `1px solid ${BORDER}`,
         background: '#fff',
+        position: 'relative', overflow: 'hidden',
       }}>
+        {/* Toronto skyline silhouette background */}
+        <svg
+          viewBox="0 0 1200 160"
+          preserveAspectRatio="xMidYMax meet"
+          aria-hidden="true"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
+        >
+          <g fill="#1a1205" opacity="0.09">
+            {/* Far left low buildings */}
+            <rect x="0" y="132" width="28" height="28" />
+            <rect x="30" y="122" width="22" height="38" />
+            <rect x="54" y="128" width="18" height="32" />
+            <rect x="74" y="118" width="26" height="42" />
+            <rect x="102" y="112" width="20" height="48" />
+            <rect x="124" y="108" width="16" height="52" />
+            <rect x="142" y="102" width="24" height="58" />
+            <rect x="168" y="97" width="18" height="63" />
+            {/* Rising toward financial district */}
+            <rect x="190" y="92" width="22" height="68" />
+            <rect x="214" y="86" width="18" height="74" />
+            <rect x="234" y="80" width="24" height="80" />
+            <rect x="260" y="75" width="20" height="85" />
+            <rect x="282" y="70" width="22" height="90" />
+            <rect x="306" y="66" width="18" height="94" />
+            <rect x="326" y="74" width="20" height="86" />
+            {/* Financial District towers */}
+            <rect x="350" y="68" width="22" height="92" />
+            <rect x="374" y="62" width="24" height="98" />
+            {/* Commerce Court */}
+            <rect x="400" y="57" width="22" height="103" />
+            {/* TD Bank Tower */}
+            <rect x="424" y="50" width="20" height="110" />
+            {/* Scotia Plaza - with slight angled top */}
+            <polygon points="447,44 469,44 470,160 446,160" />
+            {/* First Canadian Place - tallest office tower */}
+            <rect x="472" y="36" width="24" height="124" />
+            {/* More towers */}
+            <rect x="498" y="52" width="20" height="108" />
+            <rect x="520" y="60" width="18" height="100" />
+            <rect x="540" y="68" width="22" height="92" />
+            <rect x="564" y="78" width="18" height="82" />
+            <rect x="584" y="88" width="16" height="72" />
+            {/* CN Tower base */}
+            <rect x="614" y="122" width="18" height="38" />
+            {/* CN Tower lower section */}
+            <polygon points="618,72 630,72 631,122 617,122" />
+            {/* CN Tower upper tapered section */}
+            <polygon points="622,22 626,22 630,72 618,72" />
+            {/* CN Tower needle */}
+            <polygon points="623,2 625,2 627,22 621,22" />
+            {/* CN Tower Sky Pod */}
+            <rect x="614" y="50" width="20" height="10" rx="2" />
+            {/* CN Tower lower pod */}
+            <rect x="610" y="64" width="28" height="7" rx="2" />
+            {/* Rogers Centre dome */}
+            <path d="M636,160 Q658,126 682,160 Z" />
+            {/* West side buildings */}
+            <rect x="646" y="102" width="18" height="58" />
+            <rect x="666" y="92" width="20" height="68" />
+            <rect x="688" y="104" width="18" height="56" />
+            <rect x="708" y="112" width="22" height="48" />
+            <rect x="732" y="116" width="18" height="44" />
+            <rect x="752" y="108" width="20" height="52" />
+            <rect x="774" y="118" width="18" height="42" />
+            <rect x="794" y="122" width="22" height="38" />
+            <rect x="818" y="126" width="18" height="34" />
+            <rect x="838" y="120" width="20" height="40" />
+            {/* Far right tapering */}
+            <rect x="862" y="124" width="22" height="36" />
+            <rect x="886" y="130" width="18" height="30" />
+            <rect x="906" y="127" width="20" height="33" />
+            <rect x="928" y="132" width="18" height="28" />
+            <rect x="948" y="134" width="22" height="26" />
+            <rect x="972" y="136" width="18" height="24" />
+            <rect x="992" y="138" width="30" height="22" />
+            <rect x="1024" y="136" width="25" height="24" />
+            <rect x="1052" y="139" width="30" height="21" />
+            <rect x="1084" y="140" width="35" height="20" />
+            <rect x="1122" y="138" width="40" height="22" />
+            <rect x="1164" y="140" width="36" height="20" />
+          </g>
+        </svg>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img src="/header-logo-cropped.png" alt="YYZ Concrete" style={{ height: mobile ? 100 : 120, width: 'auto', display: 'block' }} />
         </a>
@@ -101,7 +184,7 @@ export default function App() {
             ))}
           </nav>
         )}
-        <a href={mobile ? 'tel:6479265914' : '#contact'} style={{
+        <a href={mobile ? 'tel:6474651114' : '#contact'} style={{
           padding: mobile ? '10px 14px' : '12px 22px',
           background: ACCENT, color: '#0a0a0a',
           border: 'none', fontFamily: 'inherit', fontSize: mobile ? 11 : 12, fontWeight: 700,
@@ -141,7 +224,7 @@ export default function App() {
           <div style={{ marginTop: mobile ? 24 : 40, display: 'flex', flexDirection: mobile ? 'column' : 'row', alignItems: mobile ? 'stretch' : 'flex-end', gap: mobile ? 12 : 60 }}>
             {!mobile && (
               <h2 className="va-body" style={{ fontSize: 18, fontWeight: 500, lineHeight: 1.5, maxWidth: 460, margin: 0, color: 'rgba(240,238,233,0.85)' }}>
-                YYZ Concrete: Four GTA plants. 60-truck fleet. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
+                YYZ Concrete: Etobicoke plant at 200 Rexdale Blvd. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
               </h2>
             )}
             <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
@@ -153,7 +236,7 @@ export default function App() {
               }}>
                 Get Quote →
               </a>
-              <a href="tel:6479265914" style={{
+              <a href="tel:6474651114" style={{
                 padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: '#f0eee9',
                 border: '2px solid rgba(240,238,233,0.6)', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
                 letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
@@ -243,9 +326,9 @@ export default function App() {
           </div>
           <div id="yards">
             <div className="va-mono" style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 14 }}>◆ 03 / SERVICE AREA</div>
-            <h2 className="va-disp" style={{ fontSize: mobile ? 48 : 72, margin: '0 0 20px', color: '#f0eee9' }}>Four plants.<br />One GTA.</h2>
+            <h2 className="va-disp" style={{ fontSize: mobile ? 48 : 72, margin: '0 0 20px', color: '#f0eee9' }}>One plant.<br />All GTA.</h2>
             <p className="va-body" style={{ fontSize: 15, color: 'rgba(240,238,233,0.65)', lineHeight: 1.6, marginBottom: 24 }}>
-              Etobicoke HQ plus three satellite plants. Whatever your zip code, we've got a mixer that's already on the way.
+              Etobicoke plant at 200 Rexdale Blvd. Serving the entire GTA — wherever you're pouring, we've got a mixer on the way.
             </p>
             <ServiceMap accent={ACCENT} dark />
           </div>
