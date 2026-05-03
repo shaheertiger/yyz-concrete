@@ -3,6 +3,28 @@ import { useIsMobile } from '../hooks/useIsMobile';
 
 const ACCENT = '#FF6A00';
 
+function Field({ label, value, onChange, suffix, muted, border, fieldBg, fg }) {
+  return (
+    <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+      <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted }}>{label}</span>
+      <div style={{ display: 'flex', alignItems: 'center', border: `1px solid ${border}`, background: fieldBg }}>
+        <input
+          type="text"
+          inputMode="decimal"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          style={{
+            flex: 1, padding: '12px 14px', border: 'none', background: 'transparent',
+            fontFamily: 'inherit', fontSize: 18, fontWeight: 600, color: fg, outline: 'none',
+            fontVariantNumeric: 'tabular-nums',
+          }}
+        />
+        <span style={{ padding: '0 14px', fontSize: 12, fontWeight: 600, color: muted, letterSpacing: '0.06em' }}>{suffix}</span>
+      </div>
+    </label>
+  );
+}
+
 export default function VolumeCalc({ accent = ACCENT, dark = false }) {
   const mobile = useIsMobile();
   const [shape, setShape] = useState('slab');
@@ -62,28 +84,6 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
   const lengthUnit = units === 'ft' ? 'FT' : 'M';
   const smallUnit = units === 'ft' ? 'IN' : 'CM';
 
-  function Field({ label, value, onChange, suffix }) {
-    return (
-      <label style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-        <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: muted }}>{label}</span>
-        <div style={{ display: 'flex', alignItems: 'center', border: `1px solid ${border}`, background: fieldBg }}>
-          <input
-            type="text"
-            inputMode="decimal"
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            style={{
-              flex: 1, padding: '12px 14px', border: 'none', background: 'transparent',
-              fontFamily: 'inherit', fontSize: 18, fontWeight: 600, color: fg, outline: 'none',
-              fontVariantNumeric: 'tabular-nums',
-            }}
-          />
-          <span style={{ padding: '0 14px', fontSize: 12, fontWeight: 600, color: muted, letterSpacing: '0.06em' }}>{suffix}</span>
-        </div>
-      </label>
-    );
-  }
-
   return (
     <div style={{ color: fg, fontFamily: 'inherit' }}>
       {/* shape tabs */}
@@ -103,22 +103,22 @@ export default function VolumeCalc({ accent = ACCENT, dark = false }) {
       }}>
         {shape === 'slab' && (
           <>
-            <Field label="Length" value={dims.length} onChange={(v) => set('length', v)} suffix={lengthUnit} />
-            <Field label="Width" value={dims.width} onChange={(v) => set('width', v)} suffix={lengthUnit} />
-            <Field label="Depth" value={dims.depth} onChange={(v) => set('depth', v)} suffix={smallUnit} />
+            <Field label="Length" value={dims.length} onChange={(v) => set('length', v)} suffix={lengthUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
+            <Field label="Width" value={dims.width} onChange={(v) => set('width', v)} suffix={lengthUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
+            <Field label="Depth" value={dims.depth} onChange={(v) => set('depth', v)} suffix={smallUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
           </>
         )}
         {shape === 'footing' && (
           <>
-            <Field label="Length" value={dims.length} onChange={(v) => set('length', v)} suffix={lengthUnit} />
+            <Field label="Length" value={dims.length} onChange={(v) => set('length', v)} suffix={lengthUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
             <Field label="Width" value={dims.width} onChange={(v) => set('width', v)} suffix={smallUnit} />
-            <Field label="Depth" value={dims.depth} onChange={(v) => set('depth', v)} suffix={smallUnit} />
+            <Field label="Depth" value={dims.depth} onChange={(v) => set('depth', v)} suffix={smallUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
           </>
         )}
         {shape === 'column' && (
           <>
-            <Field label="Diameter" value={dims.dia} onChange={(v) => set('dia', v)} suffix={smallUnit} />
-            <Field label="Height" value={dims.height} onChange={(v) => set('height', v)} suffix={lengthUnit} />
+            <Field label="Diameter" value={dims.dia} onChange={(v) => set('dia', v)} suffix={smallUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
+            <Field label="Height" value={dims.height} onChange={(v) => set('height', v)} suffix={lengthUnit} muted={muted} border={border} fieldBg={fieldBg} fg={fg} />
           </>
         )}
       </div>
