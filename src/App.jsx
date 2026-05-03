@@ -90,13 +90,16 @@ export default function App() {
         padding: `0 ${mobile ? '16px' : '32px'}`,
         borderBottom: `1px solid ${BORDER}`,
         background: '#fff',
-        minHeight: mobile ? 72 : 88,
+        minHeight: mobile ? 88 : 88,
       }}>
-        <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flex: mobile ? 1 : 'none' }}>
+        <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flex: mobile ? 1 : 'none', marginRight: mobile ? 12 : 0 }}>
           <img
             src={mobile ? '/logo-wide.png' : '/header-logo-cropped.png'}
             alt="YYZ Concrete"
-            style={{ height: mobile ? 60 : 76, width: mobile ? '100%' : 'auto', objectFit: 'contain', objectPosition: 'left center', display: 'block' }}
+            style={mobile
+              ? { width: '100%', height: 'auto', maxHeight: 80, objectFit: 'contain', objectPosition: 'left center', display: 'block' }
+              : { height: 76, width: 'auto', display: 'block' }
+            }
           />
         </a>
         {!mobile && (
