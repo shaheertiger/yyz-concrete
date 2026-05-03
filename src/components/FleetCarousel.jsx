@@ -17,7 +17,7 @@ const FLEET = [
     code: 'P-32',
     capacity: '32 m boom',
     spec: 'Truck-mounted · 5-section Z-fold',
-    img: '/2.png',
+    img: '/concrete-pump.webp',
     notes: 'High-rise pours, slab-on-deck, complex placement.',
   },
   {
@@ -25,7 +25,7 @@ const FLEET = [
     code: 'R-01',
     capacity: 'Full lane width',
     spec: 'Slip-form · highway grade',
-    img: '/3.png',
+    img: '/road-paver.jpg',
     notes: 'Municipal roads, highway reconstruction, industrial pads.',
   },
   {
@@ -33,7 +33,7 @@ const FLEET = [
     code: 'M-04',
     capacity: '4 m³',
     spec: 'Tight-access · 4×2 chassis',
-    img: '/4.png',
+    img: '/mini-mixer.jpg',
     notes: "Backyard, laneway, basement underpins. Fits 8' gates.",
   },
 ];
