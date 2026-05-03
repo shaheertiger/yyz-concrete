@@ -93,7 +93,11 @@ export default function App() {
         minHeight: mobile ? 72 : 88,
       }}>
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flex: mobile ? 1 : 'none' }}>
-          <img src="/header-logo-cropped.png" alt="YYZ Concrete" style={{ height: mobile ? 64 : 76, width: mobile ? '100%' : 'auto', objectFit: 'contain', objectPosition: 'left', display: 'block' }} />
+          <img
+            src={mobile ? '/logo-wide.png' : '/header-logo-cropped.png'}
+            alt="YYZ Concrete"
+            style={{ height: mobile ? 60 : 76, width: mobile ? '100%' : 'auto', objectFit: 'contain', objectPosition: 'left center', display: 'block' }}
+          />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
