@@ -86,20 +86,21 @@ export default function App() {
 
       {/* ── Nav ─────────────────────────────────────────────── */}
       <header style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: `0 ${mobile ? '16px' : '32px'}`,
+        display: 'flex', alignItems: 'center',
+        padding: `0 ${mobile ? '12px' : '32px'}`,
         borderBottom: `1px solid ${BORDER}`,
         background: '#fff',
-        minHeight: mobile ? 88 : 88,
+        minHeight: mobile ? 80 : 88,
+        gap: mobile ? 12 : 0,
+        justifyContent: mobile ? 'flex-start' : 'space-between',
       }}>
-        <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flex: mobile ? 1 : 'none', marginRight: mobile ? 12 : 0 }}>
+        <a href="#" style={{ display: 'block', textDecoration: 'none', flex: mobile ? 1 : 'none' }}>
           <img
             src={mobile ? '/logo-wide.png' : '/header-logo-cropped.png'}
             alt="YYZ Concrete"
             style={mobile
-              ? { width: '100%', height: 'auto', maxHeight: 80, objectFit: 'contain', objectPosition: 'left center', display: 'block' }
-              : { height: 76, width: 'auto', display: 'block' }
-            }
+              ? { width: '100%', height: 'auto', display: 'block' }
+              : { height: 76, width: 'auto', display: 'block' }}
           />
         </a>
         {!mobile && (
