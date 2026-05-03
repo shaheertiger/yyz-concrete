@@ -9,7 +9,7 @@ const FLEET = [
     code: 'M-09',
     capacity: '9 m³',
     spec: 'Front-discharge · 6×6 chassis',
-    img: '/1.png',
+    img: '/Concrete-Pouring-101-1.jpg',
     notes: 'Workhorse. Most residential and mid-size commercial pours.',
   },
   {
