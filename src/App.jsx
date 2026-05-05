@@ -15,7 +15,7 @@ const NOISE = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/s
 const IMAGES = {
   mixer: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=2400&q=85',
   slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80',
-  pump:  'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80',
+  pump:  '/Concrete_pump2-No_BS.jpg',
   concreteLevel: 'https://images.unsplash.com/photo-1673978483810-ad14e573eece?w=900&q=80',
   detailLevel:   'https://images.unsplash.com/photo-1685464196339-46a985b2049b?w=900&q=80',
   heavyWork:     'https://plus.unsplash.com/premium_photo-1683121530725-e9ddd6c74ef1?w=900&q=80',
