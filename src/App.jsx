@@ -153,22 +153,32 @@ export default function App() {
                 YYZ Concrete: Etobicoke plant at 200 Rexdale Blvd. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
               </h2>
             )}
-            <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
-              <a href="#contact" style={{
-                padding: mobile ? '16px 20px' : '18px 28px', background: ACCENT, color: '#0a0a0a', border: 'none',
-                fontFamily: 'inherit', fontSize: 13, fontWeight: 800, letterSpacing: '0.12em',
-                textTransform: 'uppercase', cursor: 'pointer', textDecoration: 'none',
-                display: 'block', textAlign: 'center',
-              }}>
-                Get Quote →
-              </a>
-              <a href="tel:6474651114" style={{
-                padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: '#f0eee9',
-                border: '2px solid rgba(240,238,233,0.6)', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
+                <a href="#contact" style={{
+                  padding: mobile ? '16px 20px' : '18px 28px', background: ACCENT, color: '#0a0a0a', border: 'none',
+                  fontFamily: 'inherit', fontSize: 13, fontWeight: 800, letterSpacing: '0.12em',
+                  textTransform: 'uppercase', cursor: 'pointer', textDecoration: 'none',
+                  display: 'block', textAlign: 'center',
+                }}>
+                  Get Quote →
+                </a>
+                <a href="tel:6474651114" style={{
+                  padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: '#f0eee9',
+                  border: '2px solid rgba(240,238,233,0.6)', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
+                  letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
+                  textDecoration: 'none', display: 'block', textAlign: 'center',
+                }}>
+                  Call Dispatch
+                </a>
+              </div>
+              <a href="#calculator" style={{
+                padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: ACCENT,
+                border: `2px solid ${ACCENT}`, fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
                 letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
                 textDecoration: 'none', display: 'block', textAlign: 'center',
               }}>
-                Call Dispatch
+                Concrete Calculator →
               </a>
             </div>
           </div>
