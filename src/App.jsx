@@ -13,13 +13,13 @@ const BORDER = 'rgba(26,26,26,0.12)';
 const NOISE = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' /></filter><rect width='200' height='200' filter='url(%23n)' opacity='0.5'/></svg>")`;
 
 const IMAGES = {
-  mixer: 'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=2400&q=85',
+  mixer: '/fleet-hero.jpg',
   slab:  'https://images.unsplash.com/photo-1564013434775-f71db0030976?w=900&q=80',
-  pump:  'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80',
+  pump:  '/Concrete_pump2-No_BS.jpg',
   concreteLevel: 'https://images.unsplash.com/photo-1673978483810-ad14e573eece?w=900&q=80',
   detailLevel:   'https://images.unsplash.com/photo-1685464196339-46a985b2049b?w=900&q=80',
   heavyWork:     'https://plus.unsplash.com/premium_photo-1683121530725-e9ddd6c74ef1?w=900&q=80',
-  road:          '/road-reconstruction.png',
+  road:          '/1554269447380.png',
 };
 
 const NAV_LINKS = ['Services', 'Fleet', 'Calculator', 'Yards', 'Contact'];
@@ -88,25 +88,32 @@ export default function App() {
       <header style={{
         display: 'flex', alignItems: 'center',
         padding: `0 ${mobile ? '12px' : '32px'}`,
-        borderBottom: `1px solid ${BORDER}`,
-        background: '#fff',
-        minHeight: mobile ? 80 : 88,
-        gap: mobile ? 12 : 0,
+        borderBottom: `2px solid ${ACCENT}`,
+        background: 'linear-gradient(135deg, #05050f 0%, #0c0c20 40%, #12101a 70%, #080810 100%)',
+        boxShadow: '0 4px 32px rgba(0,0,0,0.7), 0 1px 0 rgba(255,106,0,0.15)',
+        minHeight: mobile ? 80 : 92,
+        gap: mobile ? 8 : 0,
         justifyContent: mobile ? 'flex-start' : 'space-between',
+        position: 'relative',
+        overflow: 'hidden',
       }}>
-        <a href="#" style={{ display: 'block', textDecoration: 'none', flex: mobile ? 1 : 'none' }}>
+        {/* subtle radial city-glow behind logo */}
+        <div style={{
+          position: 'absolute', left: 0, top: 0, bottom: 0, width: mobile ? 200 : 320,
+          background: 'radial-gradient(ellipse at 30% 50%, rgba(255,106,0,0.08) 0%, transparent 70%)',
+          pointerEvents: 'none',
+        }} />
+        <a href="#" style={{ display: 'block', textDecoration: 'none', flexShrink: 0 }}>
           <img
-            src={mobile ? '/logo-wide.png' : '/header-logo-cropped.png'}
+            src="/nav-logo-transparent.png"
             alt="YYZ Concrete"
-            style={mobile
-              ? { width: '100%', height: 'auto', display: 'block' }
-              : { height: 76, width: 'auto', display: 'block' }}
+            style={{ height: mobile ? 68 : 80, width: 'auto', display: 'block' }}
           />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
             {NAV_LINKS.map((x) => (
-              <a key={x} href={`#${x.toLowerCase()}`} className="va-link" style={{ color: FG, textDecoration: 'none' }}>{x}</a>
+              <a key={x} href={`#${x.toLowerCase()}`} className="va-link" style={{ color: '#f0eee9', textDecoration: 'none' }}>{x}</a>
             ))}
           </nav>
         )}
@@ -116,6 +123,7 @@ export default function App() {
           border: 'none', fontFamily: 'inherit', fontSize: mobile ? 11 : 12, fontWeight: 700,
           letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer',
           textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap',
+          boxShadow: '0 0 16px rgba(255,106,0,0.4)',
         }}>
           {mobile ? 'Call Now' : 'Order Concrete →'}
         </a>
@@ -142,7 +150,7 @@ export default function App() {
 
         <div style={{ position: 'relative', maxWidth: 1400, margin: '0 auto', padding: `${mobile ? '44px' : '120px'} ${p} 0`, color: '#f0eee9' }}>
           <div className="va-mono" style={{ fontSize: mobile ? 10 : 12, fontWeight: 600, letterSpacing: '0.25em', color: ACCENT, marginBottom: mobile ? 12 : 20 }}>
-            ◆ READY-MIX · PUMPING · VOLUMETRIC
+            ◆ <span style={{ fontWeight: 900 }}>READY-MIX</span> · PUMPING · VOLUMETRIC
           </div>
           <h1 className="va-disp" style={{ fontSize: mobile ? 72 : 168, margin: 0, color: '#f0eee9', lineHeight: 0.9 }}>
             POUR<br />WHEN<br /><span style={{ color: ACCENT }}>YOU</span> SAY.
@@ -153,22 +161,32 @@ export default function App() {
                 YYZ Concrete: Etobicoke plant at 200 Rexdale Blvd. Same-day delivery on 90% of orders. Ready-mix concrete delivery across Toronto & GTA.
               </h2>
             )}
-            <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
-              <a href="#contact" style={{
-                padding: mobile ? '16px 20px' : '18px 28px', background: ACCENT, color: '#0a0a0a', border: 'none',
-                fontFamily: 'inherit', fontSize: 13, fontWeight: 800, letterSpacing: '0.12em',
-                textTransform: 'uppercase', cursor: 'pointer', textDecoration: 'none',
-                display: 'block', textAlign: 'center',
-              }}>
-                Get Quote →
-              </a>
-              <a href="tel:6474651114" style={{
-                padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: '#f0eee9',
-                border: '2px solid rgba(240,238,233,0.6)', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', flexDirection: mobile ? 'column' : 'row', gap: 12 }}>
+                <a href="#contact" style={{
+                  padding: mobile ? '16px 20px' : '18px 28px', background: ACCENT, color: '#0a0a0a', border: 'none',
+                  fontFamily: 'inherit', fontSize: 13, fontWeight: 800, letterSpacing: '0.12em',
+                  textTransform: 'uppercase', cursor: 'pointer', textDecoration: 'none',
+                  display: 'block', textAlign: 'center',
+                }}>
+                  Get Quote →
+                </a>
+                <a href="tel:6474651114" style={{
+                  padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: '#f0eee9',
+                  border: '2px solid rgba(240,238,233,0.6)', fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
+                  letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
+                  textDecoration: 'none', display: 'block', textAlign: 'center',
+                }}>
+                  Call Dispatch
+                </a>
+              </div>
+              <a href="#calculator" style={{
+                padding: mobile ? '16px 20px' : '18px 28px', background: 'transparent', color: ACCENT,
+                border: `2px solid ${ACCENT}`, fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
                 letterSpacing: '0.12em', textTransform: 'uppercase', cursor: 'pointer',
                 textDecoration: 'none', display: 'block', textAlign: 'center',
               }}>
-                Call Dispatch
+                Concrete Calculator →
               </a>
             </div>
           </div>
