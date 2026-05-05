@@ -142,7 +142,7 @@ export default function App() {
 
         <div style={{ position: 'relative', maxWidth: 1400, margin: '0 auto', padding: `${mobile ? '44px' : '120px'} ${p} 0`, color: '#f0eee9' }}>
           <div className="va-mono" style={{ fontSize: mobile ? 10 : 12, fontWeight: 600, letterSpacing: '0.25em', color: ACCENT, marginBottom: mobile ? 12 : 20 }}>
-            ◆ READY-MIX · PUMPING · VOLUMETRIC
+            ◆ <span style={{ fontWeight: 900 }}>READY-MIX</span> · PUMPING · VOLUMETRIC
           </div>
           <h1 className="va-disp" style={{ fontSize: mobile ? 72 : 168, margin: 0, color: '#f0eee9', lineHeight: 0.9 }}>
             POUR<br />WHEN<br /><span style={{ color: ACCENT }}>YOU</span> SAY.
