@@ -88,32 +88,25 @@ export default function App() {
       <header style={{
         display: 'flex', alignItems: 'center',
         padding: `0 ${mobile ? '12px' : '32px'}`,
-        borderBottom: `2px solid ${ACCENT}`,
-        background: 'linear-gradient(135deg, #05050f 0%, #0c0c20 40%, #12101a 70%, #080810 100%)',
-        boxShadow: '0 4px 32px rgba(0,0,0,0.7), 0 1px 0 rgba(255,106,0,0.15)',
-        minHeight: mobile ? 80 : 92,
-        gap: mobile ? 8 : 0,
+        borderBottom: `1px solid ${BORDER}`,
+        background: '#fff',
+        minHeight: mobile ? 80 : 88,
+        gap: mobile ? 12 : 0,
         justifyContent: mobile ? 'flex-start' : 'space-between',
-        position: 'relative',
-        overflow: 'hidden',
       }}>
-        {/* subtle radial city-glow behind logo */}
-        <div style={{
-          position: 'absolute', left: 0, top: 0, bottom: 0, width: mobile ? 200 : 320,
-          background: 'radial-gradient(ellipse at 30% 50%, rgba(255,106,0,0.08) 0%, transparent 70%)',
-          pointerEvents: 'none',
-        }} />
-        <a href="#" style={{ display: 'block', textDecoration: 'none', flexShrink: 0 }}>
+        <a href="#" style={{ display: 'block', textDecoration: 'none', flex: mobile ? 1 : 'none' }}>
           <img
-            src="/nav-logo-transparent.png"
+            src={mobile ? '/logo-wide.png' : '/header-logo-cropped.png'}
             alt="YYZ Concrete"
-            style={{ height: mobile ? 68 : 80, width: 'auto', display: 'block' }}
+            style={mobile
+              ? { width: '100%', height: 'auto', display: 'block' }
+              : { height: 76, width: 'auto', display: 'block' }}
           />
         </a>
         {!mobile && (
           <nav className="va-body" style={{ display: 'flex', gap: 28, fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
             {NAV_LINKS.map((x) => (
-              <a key={x} href={`#${x.toLowerCase()}`} className="va-link" style={{ color: '#f0eee9', textDecoration: 'none' }}>{x}</a>
+              <a key={x} href={`#${x.toLowerCase()}`} className="va-link" style={{ color: FG, textDecoration: 'none' }}>{x}</a>
             ))}
           </nav>
         )}
@@ -123,7 +116,6 @@ export default function App() {
           border: 'none', fontFamily: 'inherit', fontSize: mobile ? 11 : 12, fontWeight: 700,
           letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer',
           textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap',
-          boxShadow: '0 0 16px rgba(255,106,0,0.4)',
         }}>
           {mobile ? 'Call Now' : 'Order Concrete →'}
         </a>
