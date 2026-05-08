@@ -2,6 +2,7 @@ import QuoteForm from '../components/QuoteForm';
 import VolumeCalc from '../components/VolumeCalc';
 import ServiceMap from '../components/ServiceMap';
 import AuthorCard from '../components/AuthorCard';
+import SEOHead, { makeBreadcrumb, makeService, makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -47,8 +48,19 @@ export default function ReadyMixDeliveryToronto() {
   const mobile = useIsMobile();
   const p = mobile ? '20px' : '64px';
 
+  const url = '/ready-mix-concrete-delivery-toronto/';
   return (
     <>
+      <SEOHead
+        title="Ready-Mix Concrete Delivery Toronto | Same-Day | YYZ Concrete"
+        description="Same-day ready-mix concrete delivery across Toronto & GTA. 15–50 MPa CSA-certified mixes, 60-truck fleet from Etobicoke. Order concrete: (647) 465-1114."
+        canonical={url}
+        schemas={[
+          makeService('Ready-Mix Concrete Delivery Toronto', 'CSA-certified ready-mix concrete delivered same-day across Toronto and the GTA. 15–50 MPa mixes for residential, commercial, and municipal projects.', url),
+          makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Ready-Mix Concrete Delivery Toronto', href: url }]),
+          makeFAQ(FAQS),
+        ]}
+      />
       {/* ── Hero ── */}
       <section style={{ position: 'relative', background: '#0a0a0a', padding: `${mobile ? '60px' : '100px'} ${p}`, borderBottom: `2px solid ${ACCENT}` }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>

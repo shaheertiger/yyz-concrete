@@ -1,5 +1,6 @@
 import QuoteForm from '../components/QuoteForm';
 import AuthorCard from '../components/AuthorCard';
+import SEOHead, { makeBreadcrumb, makeService, makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -40,8 +41,19 @@ export default function ConcreteContractorToronto() {
   const mobile = useIsMobile();
   const p = mobile ? '20px' : '64px';
 
+  const url = '/concrete-contractor-toronto/';
   return (
     <>
+      <SEOHead
+        title="Concrete Contractor Toronto | Licensed & Insured | YYZ Concrete"
+        description="Licensed concrete contractor in Toronto. Driveways, slabs, commercial pours, and concrete repair. Free quotes within 2 hours. Call YYZ Concrete at (647) 465-1114."
+        canonical={url}
+        schemas={[
+          makeService('Concrete Contractor Toronto', 'Full-service concrete contractor in Toronto providing residential driveways, commercial slabs, concrete repair, and ready-mix supply.', url),
+          makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Concrete Contractor Toronto', href: url }]),
+          makeFAQ(FAQS),
+        ]}
+      />
       {/* ── Hero ── */}
       <section style={{ position: 'relative', background: '#0a0a0a', padding: `${mobile ? '60px' : '100px'} ${p}`, borderBottom: `2px solid ${ACCENT}` }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>

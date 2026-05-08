@@ -1,5 +1,6 @@
 import QuoteForm from '../components/QuoteForm';
 import AuthorCard from '../components/AuthorCard';
+import SEOHead, { makeBreadcrumb, makeService } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -40,8 +41,18 @@ export default function StampedConcreteToronto() {
   const mobile = useIsMobile();
   const p = mobile ? '20px' : '64px';
 
+  const url = '/stamped-concrete-toronto/';
   return (
     <>
+      <SEOHead
+        title="Stamped Concrete Toronto | Driveways, Patios & Pool Surrounds | YYZ Concrete"
+        description="Stamped concrete in Toronto — driveways, patios, walkways, and pool surrounds. Custom patterns, integral colour, professionally sealed. Free estimate from YYZ Concrete."
+        canonical={url}
+        schemas={[
+          makeService('Stamped Concrete Toronto', 'Decorative stamped concrete installation in Toronto for driveways, patios, walkways, and pool surrounds. Custom patterns and integral colour.', url),
+          makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Stamped Concrete Toronto', href: url }]),
+        ]}
+      />
       {/* ── Hero ── */}
       <section style={{ position: 'relative', background: '#0a0a0a', padding: `${mobile ? '60px' : '100px'} ${p}`, borderBottom: `2px solid ${ACCENT}` }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>

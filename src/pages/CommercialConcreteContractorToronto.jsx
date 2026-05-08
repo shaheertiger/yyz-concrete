@@ -1,5 +1,6 @@
 import QuoteForm from '../components/QuoteForm';
 import AuthorCard from '../components/AuthorCard';
+import SEOHead, { makeBreadcrumb, makeService, makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -41,8 +42,19 @@ export default function CommercialConcreteContractorToronto() {
   const mobile = useIsMobile();
   const p = mobile ? '20px' : '64px';
 
+  const url = '/commercial-concrete-contractor-toronto/';
   return (
     <>
+      <SEOHead
+        title="Commercial Concrete Contractor Toronto | Industrial Floors & Parking Lots | YYZ Concrete"
+        description="Commercial concrete contractor in Toronto. Industrial floors, parking lots, tilt-up structures, curbs, and concrete supply. Self-perform, CSA certified. Call (647) 465-1114."
+        canonical={url}
+        schemas={[
+          makeService('Commercial Concrete Contractor Toronto', 'Commercial and industrial concrete services in Toronto including warehouse floors, parking lots, tilt-up structures, curbs, and gutters.', url),
+          makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Commercial Concrete Contractor Toronto', href: url }]),
+          makeFAQ(FAQS),
+        ]}
+      />
       {/* ── Hero ── */}
       <section style={{ position: 'relative', background: '#0a0a0a', padding: `${mobile ? '60px' : '100px'} ${p}`, borderBottom: `2px solid ${ACCENT}` }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>

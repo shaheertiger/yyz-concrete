@@ -1,5 +1,6 @@
 import QuoteForm from '../components/QuoteForm';
 import AuthorCard from '../components/AuthorCard';
+import SEOHead, { makeBreadcrumb, makeService, makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -44,8 +45,18 @@ export default function ConcreteRepairToronto() {
   const mobile = useIsMobile();
   const p = mobile ? '20px' : '64px';
 
+  const url = '/concrete-repair-toronto/';
   return (
     <>
+      <SEOHead
+        title="Concrete Repair Toronto | Cracks, Spalling & Uneven Slabs | YYZ Concrete"
+        description="Concrete repair in Toronto — cracked slabs, spalling surfaces, uneven concrete. Steps, driveways, patios, sidewalks. Free assessment from YYZ Concrete at (647) 465-1114."
+        canonical={url}
+        schemas={[
+          makeService('Concrete Repair Toronto', 'Professional concrete repair in Toronto including crack injection, spall patching, slab lifting, and surface restoration for driveways, patios, steps, and sidewalks.', url),
+          makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Concrete Repair Toronto', href: url }]),
+        ]}
+      />
       {/* ── Hero ── */}
       <section style={{ position: 'relative', background: '#0a0a0a', padding: `${mobile ? '60px' : '100px'} ${p}`, borderBottom: `2px solid ${ACCENT}` }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>

@@ -1,6 +1,7 @@
 import QuoteForm from '../components/QuoteForm';
 import VolumeCalc from '../components/VolumeCalc';
 import AuthorCard from '../components/AuthorCard';
+import SEOHead, { makeBreadcrumb, makeService } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -35,8 +36,18 @@ export default function ConcreteSlabToronto() {
   const mobile = useIsMobile();
   const p = mobile ? '20px' : '64px';
 
+  const url = '/concrete-slab-toronto/';
   return (
     <>
+      <SEOHead
+        title="Concrete Slab Toronto | Garage, Shed, Basement & Commercial | YYZ Concrete"
+        description="Concrete slab installation in Toronto — garage pads, shed slabs, basement pours, patios, and commercial floors. Properly formed, reinforced, and finished. Free quote."
+        canonical={url}
+        schemas={[
+          makeService('Concrete Slab Toronto', 'Concrete slab installation in Toronto for garages, sheds, basements, patios, and commercial applications. Full base prep, reinforcement, and finishing.', url),
+          makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Concrete Slab Toronto', href: url }]),
+        ]}
+      />
       {/* ── Hero ── */}
       <section style={{ position: 'relative', background: '#0a0a0a', padding: `${mobile ? '60px' : '100px'} ${p}`, borderBottom: `2px solid ${ACCENT}` }}>
         <div style={{ maxWidth: 1400, margin: '0 auto' }}>
