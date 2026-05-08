@@ -1,4 +1,5 @@
 import QuoteForm from '../components/QuoteForm';
+import AuthorCard from '../components/AuthorCard';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -67,6 +68,8 @@ export default function ConcreteRepairToronto() {
           </div>
         </div>
       </section>
+
+      <AuthorCard topic="concrete repair, crack & spall remediation in Toronto" />
 
       {/* ── Repair Types ── */}
       <section style={{ maxWidth: 1400, margin: '0 auto', padding: `${mobile ? '60px' : '100px'} ${p}` }}>

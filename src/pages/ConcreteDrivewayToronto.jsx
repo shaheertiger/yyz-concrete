@@ -1,4 +1,5 @@
 import QuoteForm from '../components/QuoteForm';
+import AuthorCard from '../components/AuthorCard';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -55,6 +56,8 @@ export default function ConcreteDrivewayToronto() {
           </div>
         </div>
       </section>
+
+      <AuthorCard topic="concrete driveways, driveway installation & replacement" />
 
       {/* ── New Installation ── */}
       <section style={{ maxWidth: 1400, margin: '0 auto', padding: `${mobile ? '60px' : '100px'} ${p}` }}>

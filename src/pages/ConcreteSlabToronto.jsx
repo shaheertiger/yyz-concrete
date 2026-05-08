@@ -1,5 +1,6 @@
 import QuoteForm from '../components/QuoteForm';
 import VolumeCalc from '../components/VolumeCalc';
+import AuthorCard from '../components/AuthorCard';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -58,6 +59,8 @@ export default function ConcreteSlabToronto() {
           </div>
         </div>
       </section>
+
+      <AuthorCard topic="concrete slabs, garage pads, basement & commercial floor pours" />
 
       {/* ── Slab Types ── */}
       <section style={{ maxWidth: 1400, margin: '0 auto', padding: `${mobile ? '60px' : '100px'} ${p}` }}>

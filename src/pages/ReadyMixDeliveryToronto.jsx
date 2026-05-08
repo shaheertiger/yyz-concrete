@@ -1,6 +1,7 @@
 import QuoteForm from '../components/QuoteForm';
 import VolumeCalc from '../components/VolumeCalc';
 import ServiceMap from '../components/ServiceMap';
+import AuthorCard from '../components/AuthorCard';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
 
@@ -78,6 +79,8 @@ export default function ReadyMixDeliveryToronto() {
           </div>
         </div>
       </section>
+
+      <AuthorCard topic="ready-mix concrete delivery, batch plant operations & concrete supply" />
 
       {/* ── Delivery Overview ── */}
       <section style={{ maxWidth: 1400, margin: '0 auto', padding: `${mobile ? '60px' : '100px'} ${p}` }}>
