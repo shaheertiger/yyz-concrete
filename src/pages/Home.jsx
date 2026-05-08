@@ -2,9 +2,17 @@ import VolumeCalc from '../components/VolumeCalc';
 import FleetCarousel from '../components/FleetCarousel';
 import ServiceMap from '../components/ServiceMap';
 import QuoteForm from '../components/QuoteForm';
-import SEOHead from '../components/SEOHead';
+import SEOHead, { makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, NOISE, IMAGES, CONTACTS, SERVICES, STATS } from '../constants';
+
+const HOME_FAQS = [
+  ['What areas does YYZ Concrete serve?', 'YYZ Concrete delivers ready-mix concrete across the entire Greater Toronto Area from our Etobicoke plant at 200 Rexdale Blvd. We regularly serve Toronto, Etobicoke, Mississauga, Brampton, Vaughan, North York, Scarborough, Markham, and Oakville. Same-day delivery is available on 90% of orders within this area.'],
+  ['How quickly can I get concrete delivered?', 'We dispatch same-day on 90% of orders placed before 10 AM. For next-day delivery, we can typically accommodate orders placed the afternoon before. Rush orders and weekend deliveries are available — call dispatch at (647) 465-1114 for availability.'],
+  ['What concrete mixes do you offer?', 'We supply CSA-certified mixes from 15 to 50 MPa including standard air-entrained, high-early-strength, fibre-reinforced, integral-colour, low-carbon LEED-spec, and flowable fill. All mixes are batched at our Etobicoke plant and delivered in our 60-truck fleet.'],
+  ['Do you offer concrete pumping?', 'Yes. We provide boom pump and line pump services for pours that are not accessible by chute — basements, high floors, pools, and difficult backyard access. Pump booking is coordinated at time of order.'],
+  ['How do I get a quote from YYZ Concrete?', 'Call us at (647) 465-1114, email info@yyzconcrete.com, or fill in the quote form on this page. We typically respond within 2 hours during business hours. Have your pour location, approximate volume, and desired mix strength ready for the fastest quote.'],
+];
 
 export default function Home() {
   const mobile = useIsMobile();
@@ -16,6 +24,7 @@ export default function Home() {
         title="YYZ Concrete | Ready-Mix Concrete Delivery Toronto & GTA"
         description="YYZ Concrete delivers ready-mix concrete across Toronto & GTA from our Etobicoke plant. Same-day dispatch on 90% of orders. Free estimates. Call (647) 465-1114."
         canonical="/"
+        schemas={[makeFAQ(HOME_FAQS)]}
       />
       {/* ── Hero ────────────────────────────────────────────── */}
       <section style={{ position: 'relative', height: mobile ? 580 : 720, overflow: 'hidden', background: '#0a0a0a' }}>

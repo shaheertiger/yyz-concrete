@@ -60,6 +60,7 @@ export default function SEOHead({ title, description, canonical, ogImage, schema
     <Helmet>
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta name="robots" content="index, follow" />
       <link rel="canonical" href={url} />
 
       {/* Open Graph */}
@@ -68,10 +69,14 @@ export default function SEOHead({ title, description, canonical, ogImage, schema
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:locale" content="en_CA" />
       <meta property="og:site_name" content="YYZ Concrete" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@yyzconcrete" />
       <meta name="twitter:url" content={url} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

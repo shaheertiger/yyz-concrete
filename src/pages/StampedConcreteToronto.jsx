@@ -1,8 +1,16 @@
 import QuoteForm from '../components/QuoteForm';
 import AuthorCard from '../components/AuthorCard';
-import SEOHead, { makeBreadcrumb, makeService } from '../components/SEOHead';
+import SEOHead, { makeBreadcrumb, makeService, makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
+
+const FAQS = [
+  ['How long does stamped concrete last?', 'Properly installed and sealed stamped concrete lasts 25–30 years or more. The key factors are adequate base preparation, correct mix design (32 MPa air-entrained for Toronto climate), control joint placement to manage cracking, and re-sealing every 2–5 years to protect colour and prevent freeze-thaw damage.'],
+  ['How much does stamped concrete cost compared to plain concrete in Toronto?', 'Stamped concrete typically costs $18–$30 per square foot installed, compared to $12–$18 for broom-finish concrete. The premium covers the stamps, colour (integral or release), and additional finishing labour. Multi-pattern designs or two-tone colour work run toward the higher end. It is still less expensive than natural stone or interlocking brick.'],
+  ['Is stamped concrete slippery when wet?', 'The texture of a properly stamped surface provides good grip — more than a trowel-finished slab. Pool surrounds and areas prone to water benefit from a medium-broom or anti-slip sealer to further enhance traction. Avoid high-gloss solvent-based sealers in wet areas; we use water-based sealers with a slip-resistant additive for pool decks and steps.'],
+  ['How do I maintain stamped concrete?', 'Reseal every 2–5 years depending on traffic and UV exposure, or when water stops beading on the surface. Clean with a mild detergent and pressure washer at 1,500–2,000 PSI. Avoid calcium chloride or rock salt deicers — use sand or kitty litter for traction in winter. Chip sealer or repairs to small cracks should be done promptly before water infiltrates and freezes.'],
+  ['Can stamped concrete be poured in the fall or winter in Toronto?', 'We can pour stamped concrete until temperatures are consistently below 5°C, typically November in Toronto. Cold-weather stamping is more difficult because working time is shortened and the finishing window changes. For best results and colour accuracy, the ideal season is May through October. Call us to assess scheduling for your project.'],
+];
 
 const PATTERNS = [
   ['Ashlar Slate', 'Random rectangular pattern mimicking natural slate. The most popular stamped pattern in Toronto for driveways and patios.'],
@@ -51,6 +59,7 @@ export default function StampedConcreteToronto() {
         schemas={[
           makeService('Stamped Concrete Toronto', 'Decorative stamped concrete installation in Toronto for driveways, patios, walkways, and pool surrounds. Custom patterns and integral colour.', url),
           makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Stamped Concrete Toronto', href: url }]),
+          makeFAQ(FAQS),
         ]}
       />
       {/* ── Hero ── */}
