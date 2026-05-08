@@ -2,6 +2,7 @@ import VolumeCalc from '../components/VolumeCalc';
 import FleetCarousel from '../components/FleetCarousel';
 import ServiceMap from '../components/ServiceMap';
 import QuoteForm from '../components/QuoteForm';
+import SEOHead from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, NOISE, IMAGES, CONTACTS, SERVICES, STATS } from '../constants';
 
@@ -11,6 +12,11 @@ export default function Home() {
 
   return (
     <>
+      <SEOHead
+        title="YYZ Concrete | Ready-Mix Concrete Delivery Toronto & GTA"
+        description="YYZ Concrete delivers ready-mix concrete across Toronto & GTA from our Etobicoke plant. Same-day dispatch on 90% of orders. Free estimates. Call (647) 465-1114."
+        canonical="/"
+      />
       {/* ── Hero ────────────────────────────────────────────── */}
       <section style={{ position: 'relative', height: mobile ? 580 : 720, overflow: 'hidden', background: '#0a0a0a' }}>
         <img

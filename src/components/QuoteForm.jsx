@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackFormSubmit } from '../utils/analytics';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 const ACCENT = '#FF6A00';
@@ -58,6 +59,7 @@ export default function QuoteForm({ accent = ACCENT, dark = false }) {
 
   const submit = () => {
     setSubmitting(true);
+    trackFormSubmit(data.project);
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'https://formsubmit.co/info@yyzconcrete.com';

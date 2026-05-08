@@ -1,20 +1,11 @@
-import { Outlet, Link, useNavigate } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 import { useIsMobile } from '../hooks/useIsMobile';
-import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS, FOOTER_COLS } from '../constants';
-
-const SERVICE_PAGES = [
-  { label: 'Concrete Contractor Toronto',         href: '/concrete-contractor-toronto/' },
-  { label: 'Concrete Driveway Toronto',           href: '/concrete-driveway-toronto/' },
-  { label: 'Concrete Repair Toronto',             href: '/concrete-repair-toronto/' },
-  { label: 'Ready-Mix Concrete Delivery Toronto', href: '/ready-mix-concrete-delivery-toronto/' },
-  { label: 'Concrete Slab Toronto',               href: '/concrete-slab-toronto/' },
-  { label: 'Stamped Concrete Toronto',            href: '/stamped-concrete-toronto/' },
-  { label: 'Commercial Concrete Contractor',      href: '/commercial-concrete-contractor-toronto/' },
-];
+import { ACCENT, FG, BG, MUTED, BORDER } from '../constants';
+import { trackPhoneClick, trackEmailClick, trackDirectionClick } from '../utils/analytics';
 
 export default function Layout() {
   const mobile = useIsMobile();
-  const navigate = useNavigate();
+  const p = mobile ? '20px' : '64px';
 
   return (
     <div style={{ background: BG, color: FG, fontFamily: '"Barlow Condensed", "Oswald", "Arial Narrow", sans-serif', minHeight: '100vh', overflowX: 'hidden' }}>
@@ -63,13 +54,16 @@ export default function Layout() {
             <a href="/#contact" className="va-link" style={{ color: FG, textDecoration: 'none' }}>Contact</a>
           </nav>
         )}
-        <a href={mobile ? 'tel:6474651114' : '/#contact'} style={{
-          padding: mobile ? '10px 14px' : '12px 22px',
-          background: ACCENT, color: '#0a0a0a',
-          border: 'none', fontFamily: 'inherit', fontSize: mobile ? 11 : 12, fontWeight: 700,
-          letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer',
-          textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap',
-        }}>
+        <a
+          href={mobile ? 'tel:6474651114' : '/#contact'}
+          onClick={mobile ? trackPhoneClick : undefined}
+          style={{
+            padding: mobile ? '10px 14px' : '12px 22px',
+            background: ACCENT, color: '#0a0a0a',
+            border: 'none', fontFamily: 'inherit', fontSize: mobile ? 11 : 12, fontWeight: 700,
+            letterSpacing: '0.1em', textTransform: 'uppercase', cursor: 'pointer',
+            textDecoration: 'none', display: 'inline-block', whiteSpace: 'nowrap',
+          }}>
           {mobile ? 'Call Now' : 'Order Concrete →'}
         </a>
       </header>
@@ -82,7 +76,7 @@ export default function Layout() {
 
         {/* Trust strip */}
         <div style={{ borderBottom: 'solid 1px rgba(240,238,233,0.1)' }}>
-          <div style={{ maxWidth: 1400, margin: '0 auto', padding: `16px ${mobile ? '20px' : '64px'}`, display: 'flex', flexWrap: 'wrap', gap: mobile ? 12 : 32, alignItems: 'center' }}>
+          <div style={{ maxWidth: 1400, margin: '0 auto', padding: `16px ${p}`, display: 'flex', flexWrap: 'wrap', gap: mobile ? 12 : 32, alignItems: 'center' }}>
             {[
               '✓ Licensed & Insured',
               '✓ Residential & Commercial',
@@ -98,33 +92,65 @@ export default function Layout() {
         <div style={{ maxWidth: 1400, margin: '0 auto', padding: mobile ? '48px 20px 32px' : '72px 64px 48px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: mobile ? '1fr' : '1.6fr 1fr 1fr 1fr', gap: mobile ? 40 : 60 }}>
 
-            {/* Col 1 — Company info */}
+            {/* Col 1 — Company info + map */}
             <div>
               <img src="/footer-logo-new.png" alt="YYZ Concrete" style={{ width: mobile ? 200 : 240, height: 'auto', display: 'block', marginBottom: 20 }} />
               <p className="va-body" style={{ fontSize: 13, lineHeight: 1.7, color: 'rgba(240,238,233,0.6)', margin: '0 0 20px', maxWidth: 300 }}>
                 Toronto's concrete contractor for driveways, slabs, repairs, and ready-mix delivery. Serving the GTA from our Etobicoke plant since 1968.
               </p>
+
               {/* NAP */}
-              <address style={{ fontStyle: 'normal' }}>
+              <address style={{ fontStyle: 'normal', marginBottom: 24 }}>
                 <ul className="va-body" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 8 }}>
                   <li style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
                     <span className="va-mono" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: ACCENT, paddingTop: 2, flexShrink: 0 }}>ADDR</span>
-                    <span style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', lineHeight: 1.5 }}>200 Rexdale Blvd, Etobicoke, ON M9W 1R2</span>
+                    <a
+                      href="https://maps.google.com/?q=200+Rexdale+Blvd+Etobicoke+ON+M9W+1R2"
+                      target="_blank" rel="noopener noreferrer"
+                      onClick={trackDirectionClick}
+                      style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', textDecoration: 'none', lineHeight: 1.5 }}
+                      className="va-link"
+                    >
+                      200 Rexdale Blvd, Etobicoke, ON M9W 1R2
+                    </a>
                   </li>
                   <li style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                     <span className="va-mono" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: ACCENT, flexShrink: 0 }}>TEL</span>
-                    <a href="tel:6474651114" style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', textDecoration: 'none' }} className="va-link">(647) 465-1114</a>
+                    <a href="tel:6474651114" onClick={trackPhoneClick} style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', textDecoration: 'none' }} className="va-link">(647) 465-1114</a>
                   </li>
                   <li style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                     <span className="va-mono" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: ACCENT, flexShrink: 0 }}>EMAIL</span>
-                    <a href="mailto:info@yyzconcrete.com" style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', textDecoration: 'none' }} className="va-link">info@yyzconcrete.com</a>
+                    <a href="mailto:info@yyzconcrete.com" onClick={trackEmailClick} style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', textDecoration: 'none' }} className="va-link">info@yyzconcrete.com</a>
                   </li>
                   <li style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
                     <span className="va-mono" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', color: ACCENT, flexShrink: 0 }}>WEB</span>
-                    <a href="https://yyzconcrete.com" style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)', textDecoration: 'none' }} className="va-link">yyzconcrete.com</a>
+                    <span style={{ fontSize: 13, color: 'rgba(240,238,233,0.7)' }}>yyzconcrete.com</span>
                   </li>
                 </ul>
               </address>
+
+              {/* Google Maps embed */}
+              <div style={{ border: 'solid 1px rgba(240,238,233,0.12)', overflow: 'hidden', position: 'relative' }}>
+                <a
+                  href="https://maps.google.com/?q=200+Rexdale+Blvd+Etobicoke+ON+M9W+1R2"
+                  target="_blank" rel="noopener noreferrer"
+                  onClick={trackDirectionClick}
+                  style={{ display: 'block', position: 'absolute', inset: 0, zIndex: 1 }}
+                  aria-label="Get directions to YYZ Concrete on Google Maps"
+                />
+                <iframe
+                  title="YYZ Concrete location — 200 Rexdale Blvd, Etobicoke"
+                  src="https://maps.google.com/maps?q=200+Rexdale+Blvd+Etobicoke+ON+M9W+1R2&output=embed&z=15"
+                  width="100%" height="180"
+                  style={{ display: 'block', border: 0, filter: 'grayscale(1) invert(0.85) contrast(0.9)' }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '8px 12px', background: 'rgba(10,10,10,0.85)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span className="va-mono" style={{ fontSize: 10, color: 'rgba(240,238,233,0.6)', letterSpacing: '0.1em' }}>200 REXDALE BLVD · ETOBICOKE</span>
+                  <span className="va-mono" style={{ fontSize: 10, color: ACCENT, letterSpacing: '0.1em' }}>GET DIRECTIONS →</span>
+                </div>
+              </div>
             </div>
 
             {/* Col 2 — Services */}
@@ -132,14 +158,15 @@ export default function Layout() {
               <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 16 }}>SERVICES</div>
               <ul className="va-body" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {[
-                  { label: 'Concrete Driveways',          href: '/concrete-driveway-toronto/' },
-                  { label: 'Concrete Repair',              href: '/concrete-repair-toronto/' },
-                  { label: 'Ready-Mix Delivery',           href: '/ready-mix-concrete-delivery-toronto/' },
-                  { label: 'Concrete Slabs',               href: '/concrete-slab-toronto/' },
-                  { label: 'Concrete Patios',              href: '/concrete-slab-toronto/' },
-                  { label: 'Stamped Concrete',             href: '/stamped-concrete-toronto/' },
-                  { label: 'Concrete Steps',               href: '/concrete-repair-toronto/' },
-                  { label: 'Commercial Concrete',          href: '/commercial-concrete-contractor-toronto/' },
+                  { label: 'Concrete Contractor Toronto',   href: '/concrete-contractor-toronto/' },
+                  { label: 'Concrete Driveways',            href: '/concrete-driveway-toronto/' },
+                  { label: 'Concrete Repair',               href: '/concrete-repair-toronto/' },
+                  { label: 'Ready-Mix Delivery',            href: '/ready-mix-concrete-delivery-toronto/' },
+                  { label: 'Concrete Slabs',                href: '/concrete-slab-toronto/' },
+                  { label: 'Concrete Patios',               href: '/concrete-slab-toronto/' },
+                  { label: 'Stamped Concrete',              href: '/stamped-concrete-toronto/' },
+                  { label: 'Concrete Steps',                href: '/concrete-repair-toronto/' },
+                  { label: 'Commercial Concrete',           href: '/commercial-concrete-contractor-toronto/' },
                 ].map(({ label, href }) => (
                   <li key={label} style={{ padding: '5px 0', borderBottom: 'solid 1px rgba(240,238,233,0.06)' }}>
                     <Link to={href} style={{ fontSize: 13, color: 'rgba(240,238,233,0.65)', textDecoration: 'none' }} className="va-link">{label}</Link>
@@ -169,13 +196,12 @@ export default function Layout() {
               <div className="va-mono" style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.2em', color: ACCENT, marginBottom: 16 }}>QUICK LINKS</div>
               <ul className="va-body" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {[
-                  { label: 'About YYZ',           href: '/#services' },
-                  { label: 'Projects & Gallery',   href: '/#fleet' },
-                  { label: 'Reviews',              href: '/#contact' },
-                  { label: 'FAQ',                  href: '/concrete-contractor-toronto/#faq' },
-                  { label: 'Contact / Get Quote',  href: '/#contact' },
-                  { label: 'Concrete Calculator',  href: '/#calculator' },
-                  { label: 'Concrete Contractor Toronto', href: '/concrete-contractor-toronto/' },
+                  { label: 'About YYZ',            href: '/#services' },
+                  { label: 'Projects & Gallery',    href: '/#fleet' },
+                  { label: 'Reviews',               href: '/#contact' },
+                  { label: 'FAQ',                   href: '/concrete-contractor-toronto/#faq' },
+                  { label: 'Contact / Get Quote',   href: '/#contact' },
+                  { label: 'Concrete Calculator',   href: '/#calculator' },
                 ].map(({ label, href }) => (
                   <li key={label} style={{ padding: '5px 0', borderBottom: 'solid 1px rgba(240,238,233,0.06)' }}>
                     <Link to={href} style={{ fontSize: 13, color: 'rgba(240,238,233,0.65)', textDecoration: 'none' }} className="va-link">{label}</Link>
@@ -189,15 +215,15 @@ export default function Layout() {
 
         {/* Bottom bar */}
         <div style={{ borderTop: 'solid 1px rgba(240,238,233,0.1)' }}>
-          <div style={{ maxWidth: 1400, margin: '0 auto', padding: `16px ${mobile ? '20px' : '64px'}`, display: 'flex', flexDirection: mobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: mobile ? 'flex-start' : 'center', gap: mobile ? 10 : 0 }}>
+          <div style={{ maxWidth: 1400, margin: '0 auto', padding: `16px ${p}`, display: 'flex', flexDirection: mobile ? 'column' : 'row', justifyContent: 'space-between', alignItems: mobile ? 'flex-start' : 'center', gap: mobile ? 10 : 0 }}>
             <span className="va-mono" style={{ fontSize: 10, color: 'rgba(240,238,233,0.4)', letterSpacing: '0.1em' }}>
               © 2026 YYZ CONCRETE LTD · 200 REXDALE BLVD, ETOBICOKE, ON M9W 1R2 · CSA A23.1/A23.2
             </span>
             <div style={{ display: 'flex', gap: 20 }}>
               {[
-                { label: 'Privacy Policy', href: '/privacy-policy/' },
-                { label: 'Terms of Service', href: '/terms-of-service/' },
-                { label: 'Sitemap', href: '/sitemap.xml' },
+                { label: 'Privacy Policy',  href: '/privacy-policy/' },
+                { label: 'Terms',           href: '/terms-of-service/' },
+                { label: 'Sitemap',         href: '/sitemap.xml' },
               ].map(({ label, href }) => (
                 <a key={label} href={href} className="va-mono va-link" style={{ fontSize: 10, color: 'rgba(240,238,233,0.4)', letterSpacing: '0.1em', textDecoration: 'none' }}>{label.toUpperCase()}</a>
               ))}
@@ -206,6 +232,45 @@ export default function Layout() {
         </div>
 
       </footer>
+
+      {/* Sticky mobile CTA bar */}
+      {mobile && (
+        <div style={{
+          position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 999,
+          display: 'grid', gridTemplateColumns: '1fr 1fr',
+          boxShadow: '0 -4px 24px rgba(0,0,0,0.35)',
+        }}>
+          <a
+            href="tel:6474651114"
+            onClick={trackPhoneClick}
+            style={{
+              padding: '16px 12px', background: '#0a0a0a', color: '#f0eee9',
+              fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
+              letterSpacing: '0.1em', textTransform: 'uppercase',
+              textDecoration: 'none', textAlign: 'center', display: 'block',
+              borderTop: 'solid 2px rgba(240,238,233,0.15)',
+            }}
+          >
+            📞 Call Now
+          </a>
+          <a
+            href="/#contact"
+            style={{
+              padding: '16px 12px', background: ACCENT, color: '#0a0a0a',
+              fontFamily: 'inherit', fontSize: 13, fontWeight: 800,
+              letterSpacing: '0.1em', textTransform: 'uppercase',
+              textDecoration: 'none', textAlign: 'center', display: 'block',
+              borderTop: `solid 2px ${ACCENT}`,
+            }}
+          >
+            Free Quote →
+          </a>
+        </div>
+      )}
+
+      {/* Spacer so sticky bar doesn't overlap content on mobile */}
+      {mobile && <div style={{ height: 56 }} />}
+
     </div>
   );
 }

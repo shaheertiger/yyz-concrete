@@ -16,35 +16,26 @@ export default function AuthorCard({ topic }) {
         gap: mobile ? 14 : 24,
         flexWrap: 'wrap',
       }}>
-        {/* Avatar */}
+        {/* Avatar — initials only */}
         <div style={{
           width: mobile ? 44 : 56,
           height: mobile ? 44 : 56,
           borderRadius: '50%',
-          overflow: 'hidden',
           flexShrink: 0,
           border: `2px solid ${ACCENT}`,
-          background: '#222',
+          background: '#1a1a1a',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
-          <img
-            src="/shaheer-ali-khan.jpg"
-            alt="Shaheer Ali Khan"
-            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement.style.display = 'flex';
-              e.currentTarget.parentElement.style.alignItems = 'center';
-              e.currentTarget.parentElement.style.justifyContent = 'center';
-              e.currentTarget.parentElement.innerHTML = `<span style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;color:${ACCENT}">SK</span>`;
-            }}
-          />
+          <span style={{ fontFamily: '"Barlow Condensed", sans-serif', fontSize: mobile ? 16 : 20, fontWeight: 800, color: ACCENT }}>AA</span>
         </div>
 
         {/* Text */}
         <div style={{ flex: 1, minWidth: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
             <span className="va-disp" style={{ fontSize: mobile ? 16 : 18, fontWeight: 700, color: FG }}>
-              Shaheer Ali Khan
+              AlAA
             </span>
             <span className="va-mono" style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.15em', color: ACCENT, background: 'rgba(255,106,0,0.1)', padding: '3px 8px' }}>
               AUTHOR
