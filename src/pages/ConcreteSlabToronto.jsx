@@ -1,9 +1,17 @@
 import QuoteForm from '../components/QuoteForm';
 import VolumeCalc from '../components/VolumeCalc';
 import AuthorCard from '../components/AuthorCard';
-import SEOHead, { makeBreadcrumb, makeService } from '../components/SEOHead';
+import SEOHead, { makeBreadcrumb, makeService, makeFAQ } from '../components/SEOHead';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { ACCENT, FG, BG, MUTED, BORDER, CONTACTS } from '../constants';
+
+const FAQS = [
+  ['How thick should a concrete slab be for a garage in Toronto?', 'A residential garage slab should be a minimum of 4 inches (100 mm) thick on a properly compacted granular base. For heavier vehicles or if heavy equipment will be stored, 5 inches (125 mm) with rebar reinforcement is recommended. The base prep — typically 4–6 inches of compacted Granular A — matters as much as the slab thickness.'],
+  ['How long does a concrete slab take to cure?', 'Concrete reaches about 70% of its design strength in 7 days and full strength at 28 days. You can walk on it after 24–48 hours, drive light vehicles after 7 days, and park heavy vehicles after 28 days. We apply curing compound immediately after finishing to retain moisture and optimize strength gain.'],
+  ['How much does a concrete slab cost in Toronto?', 'Residential slabs (garage, shed, patio) typically run $12–$20 per square foot installed, including excavation, base, forming, pour, and finishing. Basement slabs run $8–$14 per sq ft depending on access and thickness. Commercial slabs with laser-screed and joint layout start around $15–$25 per sq ft. Get a firm quote based on your dimensions.'],
+  ['What MPa concrete mix do I need for a residential slab?', 'Most residential exterior slabs (driveways, garage aprons, patios) require 32 MPa air-entrained concrete for freeze-thaw resistance. Interior garage slabs can use 25–32 MPa. Basement slabs are typically 25 MPa. Commercial and industrial floors are specified at 32–40 MPa per engineer. We supply and place the correct CSA-certified mix for each application.'],
+  ['Can a concrete slab be poured in winter?', 'Yes — with proper cold-weather precautions. We use heated enclosures or insulated curing blankets below 5°C, hot water in the mix below freezing, and set-accelerating admixtures where appropriate. Pours are suspended below −10°C ambient. Cold-weather pours require additional planning time; call ahead so we can schedule correctly.'],
+];
 
 const SLAB_TYPES = [
   ['Garage Slab', 'Single, double, and detached garage slabs. Proper slope to floor drain. 32 MPa, rebar-reinforced, control-jointed.'],
@@ -46,6 +54,7 @@ export default function ConcreteSlabToronto() {
         schemas={[
           makeService('Concrete Slab Toronto', 'Concrete slab installation in Toronto for garages, sheds, basements, patios, and commercial applications. Full base prep, reinforcement, and finishing.', url),
           makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Concrete Slab Toronto', href: url }]),
+          makeFAQ(FAQS),
         ]}
       />
       {/* ── Hero ── */}

@@ -30,6 +30,14 @@ const REPAIR_VS_REPLACE = [
   ]],
 ];
 
+const FAQS = [
+  ['How do I know if concrete needs repair or full replacement?', 'Repair works when cracks are under 3 mm wide and isolated, spalling covers less than 20–25% of the surface, and the sub-base is solid. Replacement is the better call when cracks run through multiple panels, the slab has settled due to a failed sub-base, or repair cost exceeds 50–60% of replacement.'],
+  ['How long does concrete crack repair last?', 'A properly executed crack repair using epoxy or polyurethane injection can last 10–20 years. Patched spalling with bonded overlays typically lasts 8–15 years depending on traffic and freeze-thaw exposure. Quality of prep work is the biggest factor.'],
+  ['What causes concrete to crack in Toronto?', 'The main causes are freeze-thaw cycling (Toronto averages 50–70 freeze-thaw cycles per year), poor original mix design, inadequate curing, missing or poorly placed control joints, tree root uplift, and sub-base settlement from water infiltration or clay soil movement.'],
+  ['How much does concrete repair cost in Toronto?', 'Crack injection typically runs $8–$20 per linear foot. Spall patching ranges from $6–$15 per square foot depending on depth. Slab lifting via polyurethane foam costs $5–$25 per sq ft. Full panel replacement is $12–$20 per sq ft installed.'],
+  ['Can concrete be repaired in winter?', 'Yes, with proper precautions. We use heated enclosures or insulated blankets for pours below 5°C, and low-water-cement-ratio mixes with set-accelerating admixtures. Work stops below −10°C ambient. Call us and we will advise based on the specific repair.'],
+];
+
 const APPLICATIONS = [
   { label: 'Driveways', desc: 'Crack repair, spall patching, full-panel replacement' },
   { label: 'Garage Floors', desc: 'Pitting, dusting, joint repair, overlay systems' },
@@ -55,6 +63,7 @@ export default function ConcreteRepairToronto() {
         schemas={[
           makeService('Concrete Repair Toronto', 'Professional concrete repair in Toronto including crack injection, spall patching, slab lifting, and surface restoration for driveways, patios, steps, and sidewalks.', url),
           makeBreadcrumb([{ name: 'Home', href: '/' }, { name: 'Concrete Repair Toronto', href: url }]),
+          makeFAQ(FAQS),
         ]}
       />
       {/* ── Hero ── */}
